@@ -1,25 +1,1076 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EduSphere — Learn Smarter. Achieve Faster.</title>
-    <meta
-      name="description"
-      content="EduSphere is a modern Learning Management System for students and educators."
-    />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
-    />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduSphere - Modern Learning Management System</title>
+  <meta name="description" content="A modern Learning Management System for students and educators — live classes, expert mentors, and progress that sticks.">
+
+  <!-- Google Fonts: Manrope & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Outfit', 'Manrope', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              DEFAULT: '#7c3aed',
+              glow: '#c026d3',
+              dark: '#5b21b6',
+              light: '#a855f7',
+            },
+            secondary: {
+              DEFAULT: '#f97316',
+              foreground: '#431407',
+            },
+            surface: '#faf7fd',
+            'surface-2': '#f3edf9',
+            card: '#ffffff',
+            border: '#f0ebf8',
+            foreground: '#1a1230',
+            'muted-foreground': '#6b637d',
+          },
+          boxShadow: {
+            soft: '0 8px 24px -10px rgba(124, 58, 237, 0.18)',
+            card: '0 10px 30px -10px rgba(26, 18, 48, 0.08)',
+            elegant: '0 24px 48px -20px rgba(124, 58, 237, 0.35)',
+            glow: '0 0 40px rgba(217, 70, 239, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-soft-gradient text-foreground font-sans antialiased selection:bg-primary/20 selection:text-primary">
+
+  <!-- ==================== HEADER ==================== -->
+  <header id="main-header" class="fixed inset-x-0 top-0 z-50 px-3 pt-2 sm:px-5 sm:pt-3 lg:px-8 transition-[padding] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+    <div id="header-container" class="mx-auto will-change-[max-width]" style="max-width: 1240px; transition: max-width 700ms cubic-bezier(0.22, 1, 0.36, 1);">
+      <div id="header-pill" class="header-pill flex items-center gap-2 overflow-hidden bg-white px-3 py-2.5 shadow-[0_12px_40px_-12px_rgba(15,10,40,0.45)] sm:gap-3 sm:px-5 sm:py-3 rounded-full">
+        <div id="header-content" class="flex w-full items-center gap-2 sm:gap-3">
+          <!-- Logo -->
+          <a href="#" class="flex shrink-0 items-center gap-2.5">
+            <span class="grid h-9 w-9 place-items-center rounded-full bg-[linear-gradient(135deg,#7c3aed_0%,#c026d3_100%)] text-white shadow-md sm:h-10 sm:w-10">
+              <i data-lucide="graduation-cap" class="h-4 w-4 sm:h-5 sm:w-5"></i>
+            </span>
+            <span class="font-display text-base font-extrabold tracking-tight text-[#1a1230] sm:text-[17px]">
+              EduSphere
+            </span>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="mx-auto hidden min-w-0 flex-1 items-center justify-center gap-0.5 lg:flex">
+            <a href="#" class="desktop-nav-link relative shrink-0 rounded-full px-3.5 py-2 text-[15px] font-semibold text-[#7c3aed] transition-colors duration-300 sm:px-4 sm:text-base hover:bg-[#f4f0ff]">
+              Home
+              <span class="active-indicator absolute inset-x-3 -bottom-0.5 h-[3px] rounded-full bg-[linear-gradient(90deg,#7c3aed,#e879f9,#fb7185)]"></span>
+            </a>
+            <a href="#courses" class="desktop-nav-link relative shrink-0 rounded-full px-3.5 py-2 text-[15px] font-semibold text-[#3d3554] transition-colors duration-300 sm:px-4 sm:text-base hover:bg-[#f4f0ff] hover:text-[#1a1230]">
+              Courses
+              <span class="active-indicator hidden absolute inset-x-3 -bottom-0.5 h-[3px] rounded-full bg-[linear-gradient(90deg,#7c3aed,#e879f9,#fb7185)]"></span>
+            </a>
+            <a href="#featured" class="desktop-nav-link relative shrink-0 rounded-full px-3.5 py-2 text-[15px] font-semibold text-[#3d3554] transition-colors duration-300 sm:px-4 sm:text-base hover:bg-[#f4f0ff] hover:text-[#1a1230]">
+              Learn
+              <span class="active-indicator hidden absolute inset-x-3 -bottom-0.5 h-[3px] rounded-full bg-[linear-gradient(90deg,#7c3aed,#e879f9,#fb7185)]"></span>
+            </a>
+            <a href="#instructors" class="desktop-nav-link relative shrink-0 rounded-full px-3.5 py-2 text-[15px] font-semibold text-[#3d3554] transition-colors duration-300 sm:px-4 sm:text-base hover:bg-[#f4f0ff] hover:text-[#1a1230]">
+              Instructors
+              <span class="active-indicator hidden absolute inset-x-3 -bottom-0.5 h-[3px] rounded-full bg-[linear-gradient(90deg,#7c3aed,#e879f9,#fb7185)]"></span>
+            </a>
+            <a href="#exams" class="desktop-nav-link relative shrink-0 rounded-full px-3.5 py-2 text-[15px] font-semibold text-[#3d3554] transition-colors duration-300 sm:px-4 sm:text-base hover:bg-[#f4f0ff] hover:text-[#1a1230]">
+              Exams
+              <span class="active-indicator hidden absolute inset-x-3 -bottom-0.5 h-[3px] rounded-full bg-[linear-gradient(90deg,#7c3aed,#e879f9,#fb7185)]"></span>
+            </a>
+            <a href="#ebooks" class="desktop-nav-link relative shrink-0 rounded-full px-3.5 py-2 text-[15px] font-semibold text-[#3d3554] transition-colors duration-300 sm:px-4 sm:text-base hover:bg-[#f4f0ff] hover:text-[#1a1230]">
+              E-Books
+              <span class="active-indicator hidden absolute inset-x-3 -bottom-0.5 h-[3px] rounded-full bg-[linear-gradient(90deg,#7c3aed,#e879f9,#fb7185)]"></span>
+            </a>
+          </nav>
+
+          <!-- Action Buttons -->
+          <div class="ml-auto flex shrink-0 items-center gap-1.5">
+            <a href="#courses" class="hidden h-9 items-center justify-center rounded-full bg-[linear-gradient(105deg,#7c3aed_0%,#d946ef_55%,#fb7185_100%)] px-5 text-sm font-semibold text-white shadow-[0_8px_20px_-6px_rgba(168,85,247,0.65)] transition-transform duration-300 hover:-translate-y-0.5 lg:inline-flex sm:h-10 sm:px-6 sm:text-[15px]">
+              Login
+            </a>
+            <button id="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" class="grid h-9 w-9 place-items-center rounded-full bg-[#f4f0ff] text-[#5b21b6] transition-colors hover:bg-[#ede9fe] lg:hidden sm:h-10 sm:w-10">
+              <i id="menu-icon-open" data-lucide="align-right" class="h-5 w-5"></i>
+              <i id="menu-icon-close" data-lucide="x" class="h-5 w-5 hidden"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden mt-2 overflow-hidden rounded-3xl border border-white/40 bg-white/95 shadow-lg backdrop-blur-md lg:hidden">
+        <nav class="flex flex-col p-2">
+          <a href="#" class="rounded-2xl px-4 py-3 text-base font-semibold bg-[#f3e8ff] text-[#7c3aed]">Home</a>
+          <a href="#courses" class="rounded-2xl px-4 py-3 text-base font-semibold text-[#2a2438] hover:bg-[#f4f0ff]">Courses</a>
+          <a href="#featured" class="rounded-2xl px-4 py-3 text-base font-semibold text-[#2a2438] hover:bg-[#f4f0ff]">Learn</a>
+          <a href="#instructors" class="rounded-2xl px-4 py-3 text-base font-semibold text-[#2a2438] hover:bg-[#f4f0ff]">Instructors</a>
+          <a href="#exams" class="rounded-2xl px-4 py-3 text-base font-semibold text-[#2a2438] hover:bg-[#f4f0ff]">Exams</a>
+          <a href="#ebooks" class="rounded-2xl px-4 py-3 text-base font-semibold text-[#2a2438] hover:bg-[#f4f0ff]">E-Books</a>
+          <div class="mt-1 border-t border-black/5 p-2 pt-3">
+            <button class="inline-flex h-11 w-full items-center justify-center rounded-full bg-[linear-gradient(105deg,#7c3aed_0%,#d946ef_55%,#fb7185_100%)] text-[15px] font-semibold text-white shadow-[0_8px_20px_-6px_rgba(168,85,247,0.65)]">
+              Login
+            </button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="relative flex min-h-svh w-full flex-col overflow-hidden bg-[linear-gradient(160deg,#0b0618_0%,#1a0b2e_42%,#2a1250_72%,#1e0a36_100%)] text-white">
+    <!-- Background Glows -->
+    <div class="pointer-events-none absolute inset-0">
+      <div class="absolute -left-24 top-24 h-80 w-80 rounded-full bg-[#7c3aed]/25 blur-[100px]"></div>
+      <div class="absolute right-0 top-10 h-96 w-96 rounded-full bg-[#db2777]/20 blur-[120px]"></div>
+      <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-[#6366f1]/20 blur-[100px]"></div>
+      <div class="absolute inset-x-0 bottom-0 h-48 bg-[radial-gradient(ellipse_at_bottom,rgba(124,58,237,0.35),transparent_70%)]"></div>
+    </div>
+
+    <div class="relative flex min-h-svh w-full flex-col pt-[4.25rem] sm:pt-[4.75rem]">
+      <div class="container-lms flex flex-1 items-center py-8">
+        <div class="grid w-full items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
+          
+          <!-- LEFT CONTENT -->
+          <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-white/85 backdrop-blur-md">
+              <i data-lucide="sparkles" class="h-3.5 w-3.5 text-[#fbbf24]"></i>
+              New batches enrolling now
+            </span>
+
+            <h1 class="mt-5 font-display text-[2.25rem] font-extrabold leading-[1.08] tracking-tight sm:text-4xl lg:text-[3rem]">
+              Learn <span class="bg-[linear-gradient(90deg,#c4b5fd_0%,#818cf8_100%)] bg-clip-text text-transparent">Smarter.</span><br>
+              Achieve <span class="bg-[linear-gradient(90deg,#fb7185_0%,#f97316_100%)] bg-clip-text text-transparent">Faster.</span>
+            </h1>
+
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-white/65 sm:text-[15px]">
+              A modern Learning Management System for students and educators — live classes, expert mentors, and progress that actually sticks.
+            </p>
+
+            <div class="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <a href="#courses" class="group inline-flex items-center gap-2 rounded-full bg-[linear-gradient(105deg,#7c3aed_0%,#d946ef_50%,#fb7185_100%)] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_32px_-10px_rgba(192,38,211,0.7)] transition-transform hover:-translate-y-0.5">
+                Explore Courses
+                <i data-lucide="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-0.5"></i>
+              </a>
+              <a href="#featured" class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/10">
+                <span class="grid h-5 w-5 place-items-center rounded-full border border-white/40">
+                  <i data-lucide="play" class="h-2.5 w-2.5 fill-current"></i>
+                </span>
+                Watch Intro
+              </a>
+            </div>
+
+            <!-- Feature Pills -->
+            <div class="mt-9 grid w-full gap-5 text-left sm:grid-cols-3">
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#7c3aed] to-[#a855f7] text-white shadow-[0_8px_20px_-8px_rgba(168,85,247,0.8)]">
+                  <i data-lucide="graduation-cap" class="h-4 w-4"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-semibold text-white">Expert Instructors</div>
+                  <div class="mt-0.5 text-xs text-white/50">Learn from the best</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#ec4899] to-[#f97316] text-white shadow-[0_8px_20px_-8px_rgba(168,85,247,0.8)]">
+                  <i data-lucide="star" class="h-4 w-4"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-semibold text-white">Live & Recorded Classes</div>
+                  <div class="mt-0.5 text-xs text-white/50">Study anytime</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#6366f1] text-white shadow-[0_8px_20px_-8px_rgba(168,85,247,0.8)]">
+                  <i data-lucide="line-chart" class="h-4 w-4"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-semibold text-white">Track Your Progress</div>
+                  <div class="mt-0.5 text-xs text-white/50">Stay motivated</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT CAROUSEL -->
+          <div class="relative w-full">
+            <div class="pointer-events-none absolute -inset-10 -z-10 rounded-full bg-[radial-gradient(circle_at_center,rgba(192,38,211,0.4),transparent_65%)] blur-3xl"></div>
+
+            <div id="hero-carousel" class="relative w-full overflow-hidden rounded-3xl shadow-[0_28px_60px_-24px_rgba(0,0,0,0.7)] aspect-[4/3]">
+              <!-- Slide 1 -->
+              <img src="images/course-ssc-batch.jpg" alt="SSC Batch" class="carousel-slide active w-full h-full object-cover">
+              <!-- Slide 2 -->
+              <img src="images/course-hsc-batch.jpg" alt="HSC Batch" class="carousel-slide w-full h-full object-cover">
+              <!-- Slide 3 -->
+              <img src="images/course-admission-batch.jpg" alt="Admission Batch" class="carousel-slide w-full h-full object-cover">
+              <!-- Slide 4 -->
+              <img src="images/course-skills-batch.jpg" alt="Skills Batch" class="carousel-slide w-full h-full object-cover">
+            </div>
+
+            <!-- Dots + Controls -->
+            <div class="mt-4 flex items-center justify-center gap-3">
+              <button id="carousel-prev" type="button" aria-label="Previous course" class="grid h-7 w-7 place-items-center rounded-full border border-white/20 bg-white/5 text-white/75 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-white/12 hover:text-white">
+                <i data-lucide="chevron-left" class="h-3.5 w-3.5"></i>
+              </button>
+
+              <div class="flex items-center gap-2.5">
+                <button type="button" aria-label="Show SSC Batch" class="carousel-dot h-2 w-7 rounded-full bg-[linear-gradient(90deg,#a855f7,#f472b6)] shadow-[0_0_12px_rgba(244,114,182,0.55)] transition-all duration-500 ease-out"></button>
+                <button type="button" aria-label="Show HSC Batch" class="carousel-dot h-2 w-2 rounded-full bg-white/30 transition-all duration-500 ease-out hover:bg-white/55"></button>
+                <button type="button" aria-label="Show Admission Batch" class="carousel-dot h-2 w-2 rounded-full bg-white/30 transition-all duration-500 ease-out hover:bg-white/55"></button>
+                <button type="button" aria-label="Show Skills Batch" class="carousel-dot h-2 w-2 rounded-full bg-white/30 transition-all duration-500 ease-out hover:bg-white/55"></button>
+              </div>
+
+              <button id="carousel-next" type="button" aria-label="Next course" class="grid h-7 w-7 place-items-center rounded-full border border-white/20 bg-white/5 text-white/75 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-white/12 hover:text-white">
+                <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CATEGORIES SECTION ==================== -->
+  <section id="ebooks" class="relative overflow-hidden bg-soft-gradient py-10 md:py-12 lg:py-14">
+    <div class="pointer-events-none absolute -left-20 top-16 h-64 w-64 rounded-full bg-primary/8 blur-[80px]"></div>
+    <div class="pointer-events-none absolute -right-12 bottom-8 h-72 w-72 rounded-full bg-primary-glow/10 blur-[90px]"></div>
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent"></div>
+
+    <div class="container-lms relative">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+          Find your <span class="bg-[linear-gradient(90deg,#7c3aed_0%,#6366f1_100%)] bg-clip-text text-transparent">learning</span> path
+        </h2>
+        <p class="mt-3 text-sm text-muted-foreground sm:text-base">
+          Explore curated tracks designed for every stage of your academic journey.
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
+        <!-- 1. Academic -->
+        <a href="#courses" class="group relative flex min-h-[200px] flex-col overflow-hidden rounded-[1.35rem] border border-[#f0ebf8] bg-white/90 p-5 shadow-soft backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 sm:p-6 hover:border-[#7c3aed]/45 hover:shadow-[0_24px_55px_-20px_rgba(124,58,237,0.55)]">
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#7c3aed]/20 via-[#a855f7]/8 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          <div class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-card/60 blur-2xl transition-transform duration-700 group-hover:scale-125"></div>
+          <div class="relative flex h-full flex-col">
+            <div class="flex items-start justify-between gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-[#7c3aed] to-[#c026d3] text-white shadow-[0_12px_28px_-10px_rgba(124,58,237,0.45)] transition-transform duration-500 group-hover:scale-110">
+                <i data-lucide="graduation-cap" class="h-5 w-5"></i>
+              </span>
+              <span class="rounded-full border border-[#7c3aed]/25 bg-[#7c3aed]/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[#7c3aed]">
+                24 courses
+              </span>
+            </div>
+            <h3 class="mt-5 font-display text-lg font-extrabold tracking-tight text-foreground">Academic</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Class 6–12 full curriculum with live + recorded classes.</p>
+            <div class="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#7c3aed]">
+              Explore
+              <i data-lucide="arrow-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- 2. Admission -->
+        <a href="#courses" class="group relative flex min-h-[200px] flex-col overflow-hidden rounded-[1.35rem] border border-[#f0ebf8] bg-white/90 p-5 shadow-soft backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 sm:p-6 hover:border-[#fb7185]/50 hover:shadow-[0_24px_55px_-20px_rgba(249,115,22,0.45)]">
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#f97316]/18 via-[#fb7185]/8 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          <div class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-card/60 blur-2xl transition-transform duration-700 group-hover:scale-125"></div>
+          <div class="relative flex h-full flex-col">
+            <div class="flex items-start justify-between gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-[#f97316] to-[#fb7185] text-white shadow-[0_12px_28px_-10px_rgba(124,58,237,0.45)] transition-transform duration-500 group-hover:scale-110">
+                <i data-lucide="book-open" class="h-5 w-5"></i>
+              </span>
+              <span class="rounded-full border border-[#7c3aed]/25 bg-[#7c3aed]/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[#7c3aed]">
+                12 courses
+              </span>
+            </div>
+            <h3 class="mt-5 font-display text-lg font-extrabold tracking-tight text-foreground">Admission</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">University admission prep that actually sticks.</p>
+            <div class="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#ea580c]">
+              Explore
+              <i data-lucide="arrow-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- 3. Mathematics -->
+        <a href="#courses" class="group relative flex min-h-[200px] flex-col overflow-hidden rounded-[1.35rem] border border-[#f0ebf8] bg-white/90 p-5 shadow-soft backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 sm:p-6 hover:border-[#d946ef]/45 hover:shadow-[0_24px_55px_-20px_rgba(217,70,239,0.5)]">
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#d946ef]/18 via-[#e879f9]/8 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          <div class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-card/60 blur-2xl transition-transform duration-700 group-hover:scale-125"></div>
+          <div class="relative flex h-full flex-col">
+            <div class="flex items-start justify-between gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-[#d946ef] to-[#e879f9] text-white shadow-[0_12px_28px_-10px_rgba(124,58,237,0.45)] transition-transform duration-500 group-hover:scale-110">
+                <i data-lucide="calculator" class="h-5 w-5"></i>
+              </span>
+              <span class="rounded-full border border-[#7c3aed]/25 bg-[#7c3aed]/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[#7c3aed]">
+                18 courses
+              </span>
+            </div>
+            <h3 class="mt-5 font-display text-lg font-extrabold tracking-tight text-foreground">Mathematics</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Advanced math & problem solving.</p>
+            <div class="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#c026d3]">
+              Explore
+              <i data-lucide="arrow-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- 4. Science -->
+        <a href="#courses" class="group relative flex min-h-[200px] flex-col overflow-hidden rounded-[1.35rem] border border-[#f0ebf8] bg-white/90 p-5 shadow-soft backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 sm:p-6 hover:border-[#14b8a6]/45 hover:shadow-[0_24px_55px_-20px_rgba(20,184,166,0.45)]">
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#14b8a6]/18 via-[#2dd4bf]/8 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          <div class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-card/60 blur-2xl transition-transform duration-700 group-hover:scale-125"></div>
+          <div class="relative flex h-full flex-col">
+            <div class="flex items-start justify-between gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-[#0d9488] to-[#2dd4bf] text-white shadow-[0_12px_28px_-10px_rgba(124,58,237,0.45)] transition-transform duration-500 group-hover:scale-110">
+                <i data-lucide="flask-conical" class="h-5 w-5"></i>
+              </span>
+              <span class="rounded-full border border-[#7c3aed]/25 bg-[#7c3aed]/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[#7c3aed]">
+                15 courses
+              </span>
+            </div>
+            <h3 class="mt-5 font-display text-lg font-extrabold tracking-tight text-foreground">Science</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Physics, chemistry & biology.</p>
+            <div class="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#0f766e]">
+              Explore
+              <i data-lucide="arrow-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- 5. Technology -->
+        <a href="#courses" class="group relative flex min-h-[200px] flex-col overflow-hidden rounded-[1.35rem] border border-[#f0ebf8] bg-white/90 p-5 shadow-soft backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 sm:p-6 hover:border-[#6366f1]/45 hover:shadow-[0_24px_55px_-20px_rgba(99,102,241,0.5)]">
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#6366f1]/18 via-[#818cf8]/8 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          <div class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-card/60 blur-2xl transition-transform duration-700 group-hover:scale-125"></div>
+          <div class="relative flex h-full flex-col">
+            <div class="flex items-start justify-between gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-[#4f46e5] to-[#818cf8] text-white shadow-[0_12px_28px_-10px_rgba(124,58,237,0.45)] transition-transform duration-500 group-hover:scale-110">
+                <i data-lucide="code-2" class="h-5 w-5"></i>
+              </span>
+              <span class="rounded-full border border-[#7c3aed]/25 bg-[#7c3aed]/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[#7c3aed]">
+                10 courses
+              </span>
+            </div>
+            <h3 class="mt-5 font-display text-lg font-extrabold tracking-tight text-foreground">Technology</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Programming & modern tools.</p>
+            <div class="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#4f46e5]">
+              Explore
+              <i data-lucide="arrow-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- 6. Community -->
+        <a href="#courses" class="group relative flex min-h-[200px] flex-col overflow-hidden rounded-[1.35rem] border border-[#f0ebf8] bg-white/90 p-5 shadow-soft backdrop-blur-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 sm:p-6 hover:border-[#f43f5e]/45 hover:shadow-[0_24px_55px_-20px_rgba(244,63,94,0.45)]">
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#f43f5e]/18 via-[#fb7185]/8 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-100"></div>
+          <div class="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-card/60 blur-2xl transition-transform duration-700 group-hover:scale-125"></div>
+          <div class="relative flex h-full flex-col">
+            <div class="flex items-start justify-between gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-[#e11d48] to-[#fb7185] text-white shadow-[0_12px_28px_-10px_rgba(124,58,237,0.45)] transition-transform duration-500 group-hover:scale-110">
+                <i data-lucide="users" class="h-5 w-5"></i>
+              </span>
+              <span class="rounded-full border border-[#7c3aed]/25 bg-[#7c3aed]/10 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[#7c3aed]">
+                8 courses
+              </span>
+            </div>
+            <h3 class="mt-5 font-display text-lg font-extrabold tracking-tight text-foreground">Community</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Peer learning & mentorship.</p>
+            <div class="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#e11d48]">
+              Explore
+              <i data-lucide="arrow-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED COURSES ==================== -->
+  <section id="courses" class="relative overflow-hidden bg-soft-gradient py-10 md:py-12 lg:py-14">
+    <div class="pointer-events-none absolute -right-24 top-24 h-72 w-72 rounded-full bg-primary/6 blur-[90px]"></div>
+    <div class="pointer-events-none absolute -left-16 bottom-10 h-64 w-64 rounded-full bg-primary-glow/8 blur-[80px]"></div>
+
+    <div class="container-lms relative">
+      <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div class="max-w-2xl text-left">
+          <h2 class="font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+            Discover our <span class="bg-[linear-gradient(90deg,#7c3aed_0%,#6366f1_100%)] bg-clip-text text-transparent">top courses</span>
+          </h2>
+          <p class="mt-3 text-sm text-muted-foreground sm:text-base">
+            Hand-picked programs loved by thousands of learners.
+          </p>
+        </div>
+        <a href="#courses" class="hidden shrink-0 items-center gap-2 rounded-full border border-[#7c3aed]/20 bg-white px-5 py-2.5 text-sm font-semibold text-[#7c3aed] shadow-[0_8px_24px_-12px_rgba(124,58,237,0.35)] transition-all hover:-translate-y-0.5 hover:border-[#7c3aed]/40 hover:shadow-[0_14px_32px_-12px_rgba(124,58,237,0.45)] sm:inline-flex">
+          View all
+          <i data-lucide="arrow-right" class="h-4 w-4"></i>
+        </a>
+      </div>
+
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 md:mt-10 lg:grid-cols-3 lg:gap-6">
+        <!-- Course 1 -->
+        <article class="group flex flex-col overflow-hidden rounded-[1.35rem] border border-[#f0ebf8] bg-white shadow-soft transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-[#7c3aed]/25 hover:shadow-[0_28px_60px_-24px_rgba(124,58,237,0.4)]">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img src="images/featured-ssc.jpg" alt="SSC-27 Full Prep 2.0" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b0618]/70 via-[#0b0618]/15 to-transparent"></div>
+            <div class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold text-[#7c3aed] shadow-sm backdrop-blur sm:left-4 sm:top-4">
+              Best Seller
+            </div>
+            <div class="absolute right-3 top-3 max-w-[45%] truncate rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur sm:right-4 sm:top-4 sm:max-w-none">
+              Beginner → Advanced
+            </div>
+            <div class="absolute inset-0 grid place-items-center">
+              <span class="grid h-12 w-12 place-items-center rounded-full bg-white/95 text-[#7c3aed] shadow-[0_12px_30px_-8px_rgba(0,0,0,0.45)] ring-4 ring-white/25 transition-transform duration-500 group-hover:scale-110 sm:h-14 sm:w-14">
+                <i data-lucide="play" class="h-4 w-4 fill-current sm:h-5 sm:w-5"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex flex-1 flex-col p-4 sm:p-5 lg:p-6">
+            <div class="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#f4f0ff] px-2.5 py-1">
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-[#f59e0b] text-[#f59e0b]"></i>
+              <span class="text-xs font-bold text-[#1a1230]">4.9</span>
+              <span class="text-xs text-muted-foreground">· 12,480 students</span>
+            </div>
+
+            <h3 class="mt-3 line-clamp-2 font-display text-base font-extrabold leading-snug tracking-tight text-[#1a1230] sm:text-lg">
+              SSC-27 Full Prep 2.0
+            </h3>
+
+            <div class="mt-3 flex items-center gap-2.5">
+              <img src="images/instructor-niaz.jpg" alt="Niaz Morshed Faysal" class="h-8 w-8 shrink-0 rounded-full object-cover ring-2 ring-[#7c3aed]/15 ring-offset-1 ring-offset-white">
+              <div class="min-w-0">
+                <div class="truncate text-sm font-semibold text-foreground">Niaz Morshed Faysal</div>
+                <div class="truncate text-xs text-muted-foreground">SSC Mentor</div>
+              </div>
+            </div>
+
+            <div class="mt-auto pt-4 sm:pt-5">
+              <div class="mb-4 h-px w-full bg-gradient-to-r from-transparent via-[#7c3aed]/20 to-transparent"></div>
+              <div class="flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <span class="text-lg font-extrabold text-foreground">৳3499</span>
+                  <span class="ml-2 text-sm text-muted-foreground line-through">৳4999</span>
+                </div>
+                <button type="button" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[linear-gradient(105deg,#7c3aed_0%,#d946ef_55%,#fb7185_100%)] px-4 py-2 text-xs font-semibold text-white shadow-[0_10px_24px_-8px_rgba(192,38,211,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-8px_rgba(192,38,211,0.75)] sm:px-5 sm:text-[13px]">
+                  Enroll
+                  <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Course 2 -->
+        <article class="group flex flex-col overflow-hidden rounded-[1.35rem] border border-[#f0ebf8] bg-white shadow-soft transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-[#7c3aed]/25 hover:shadow-[0_28px_60px_-24px_rgba(124,58,237,0.4)]">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img src="images/featured-hsc-physics.jpg" alt="HSC Physics Master Class" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b0618]/70 via-[#0b0618]/15 to-transparent"></div>
+            <div class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold text-[#7c3aed] shadow-sm backdrop-blur sm:left-4 sm:top-4">
+              New
+            </div>
+            <div class="absolute right-3 top-3 max-w-[45%] truncate rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur sm:right-4 sm:top-4 sm:max-w-none">
+              Intermediate
+            </div>
+            <div class="absolute inset-0 grid place-items-center">
+              <span class="grid h-12 w-12 place-items-center rounded-full bg-white/95 text-[#7c3aed] shadow-[0_12px_30px_-8px_rgba(0,0,0,0.45)] ring-4 ring-white/25 transition-transform duration-500 group-hover:scale-110 sm:h-14 sm:w-14">
+                <i data-lucide="play" class="h-4 w-4 fill-current sm:h-5 sm:w-5"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex flex-1 flex-col p-4 sm:p-5 lg:p-6">
+            <div class="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#f4f0ff] px-2.5 py-1">
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-[#f59e0b] text-[#f59e0b]"></i>
+              <span class="text-xs font-bold text-[#1a1230]">4.8</span>
+              <span class="text-xs text-muted-foreground">· 8,620 students</span>
+            </div>
+
+            <h3 class="mt-3 line-clamp-2 font-display text-base font-extrabold leading-snug tracking-tight text-[#1a1230] sm:text-lg">
+              HSC Physics Master Class
+            </h3>
+
+            <div class="mt-3 flex items-center gap-2.5">
+              <img src="images/instructor-rafiul.jpg" alt="Dr. Rafiul Alam" class="h-8 w-8 shrink-0 rounded-full object-cover ring-2 ring-[#7c3aed]/15 ring-offset-1 ring-offset-white">
+              <div class="min-w-0">
+                <div class="truncate text-sm font-semibold text-foreground">Dr. Rafiul Alam</div>
+                <div class="truncate text-xs text-muted-foreground">Physics Expert</div>
+              </div>
+            </div>
+
+            <div class="mt-auto pt-4 sm:pt-5">
+              <div class="mb-4 h-px w-full bg-gradient-to-r from-transparent via-[#7c3aed]/20 to-transparent"></div>
+              <div class="flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <span class="text-lg font-extrabold text-foreground">৳2799</span>
+                  <span class="ml-2 text-sm text-muted-foreground line-through">৳3499</span>
+                </div>
+                <button type="button" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[linear-gradient(105deg,#7c3aed_0%,#d946ef_55%,#fb7185_100%)] px-4 py-2 text-xs font-semibold text-white shadow-[0_10px_24px_-8px_rgba(192,38,211,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-8px_rgba(192,38,211,0.75)] sm:px-5 sm:text-[13px]">
+                  Enroll
+                  <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Course 3 -->
+        <article class="group flex flex-col overflow-hidden rounded-[1.35rem] border border-[#f0ebf8] bg-white shadow-soft transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-[#7c3aed]/25 hover:shadow-[0_28px_60px_-24px_rgba(124,58,237,0.4)]">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img src="images/featured-admission.jpg" alt="University Admission Combo" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b0618]/70 via-[#0b0618]/15 to-transparent"></div>
+            <div class="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold text-[#7c3aed] shadow-sm backdrop-blur sm:left-4 sm:top-4">
+              Popular
+            </div>
+            <div class="absolute right-3 top-3 max-w-[45%] truncate rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur sm:right-4 sm:top-4 sm:max-w-none">
+              Advanced
+            </div>
+            <div class="absolute inset-0 grid place-items-center">
+              <span class="grid h-12 w-12 place-items-center rounded-full bg-white/95 text-[#7c3aed] shadow-[0_12px_30px_-8px_rgba(0,0,0,0.45)] ring-4 ring-white/25 transition-transform duration-500 group-hover:scale-110 sm:h-14 sm:w-14">
+                <i data-lucide="play" class="h-4 w-4 fill-current sm:h-5 sm:w-5"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex flex-1 flex-col p-4 sm:p-5 lg:p-6">
+            <div class="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#f4f0ff] px-2.5 py-1">
+              <i data-lucide="star" class="h-3.5 w-3.5 fill-[#f59e0b] text-[#f59e0b]"></i>
+              <span class="text-xs font-bold text-[#1a1230]">4.9</span>
+              <span class="text-xs text-muted-foreground">· 21,030 students</span>
+            </div>
+
+            <h3 class="mt-3 line-clamp-2 font-display text-base font-extrabold leading-snug tracking-tight text-[#1a1230] sm:text-lg">
+              University Admission Combo
+            </h3>
+
+            <div class="mt-3 flex items-center gap-2.5">
+              <img src="images/instructor-team.jpg" alt="Team EduSphere" class="h-8 w-8 shrink-0 rounded-full object-cover ring-2 ring-[#7c3aed]/15 ring-offset-1 ring-offset-white">
+              <div class="min-w-0">
+                <div class="truncate text-sm font-semibold text-foreground">Team EduSphere</div>
+                <div class="truncate text-xs text-muted-foreground">Admission Mentors</div>
+              </div>
+            </div>
+
+            <div class="mt-auto pt-4 sm:pt-5">
+              <div class="mb-4 h-px w-full bg-gradient-to-r from-transparent via-[#7c3aed]/20 to-transparent"></div>
+              <div class="flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <span class="text-lg font-extrabold text-foreground">৳5299</span>
+                  <span class="ml-2 text-sm text-muted-foreground line-through">৳6999</span>
+                </div>
+                <button type="button" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[linear-gradient(105deg,#7c3aed_0%,#d946ef_55%,#fb7185_100%)] px-4 py-2 text-xs font-semibold text-white shadow-[0_10px_24px_-8px_rgba(192,38,211,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-8px_rgba(192,38,211,0.75)] sm:px-5 sm:text-[13px]">
+                  Enroll
+                  <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Mobile view all button -->
+      <div class="mt-6 flex justify-center sm:hidden">
+        <a href="#courses" class="inline-flex items-center gap-2 rounded-full border border-[#7c3aed]/25 bg-white px-5 py-2.5 text-sm font-semibold text-[#7c3aed] shadow-[0_8px_24px_-12px_rgba(124,58,237,0.35)]">
+          View all courses
+          <i data-lucide="arrow-right" class="h-4 w-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== BATCHES + STATS ==================== -->
+  <section class="relative overflow-hidden bg-soft-gradient py-10 md:py-12 lg:py-14">
+    <div class="container-lms">
+      <div class="grid gap-6 lg:grid-cols-2">
+      <!-- Card 1: Batches -->
+      <div class="rounded-2xl border border-border bg-white p-6 shadow-soft sm:p-8">
+        <span class="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+          Online Course
+        </span>
+        <h3 class="mt-4 font-display text-2xl font-extrabold sm:text-3xl text-foreground">
+          Online batches are ongoing!
+        </h3>
+        <p class="mt-1 text-sm font-medium text-primary">Book your seat now!</p>
+        
+        <div class="mt-6 space-y-3">
+          <a href="#courses" class="group flex items-center gap-4 rounded-xl border border-border bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-soft">
+            <span class="grid h-11 w-11 place-items-center rounded-lg bg-primary-gradient text-white shadow-soft">
+              <i data-lucide="book-open" class="h-5 w-5"></i>
+            </span>
+            <div class="min-w-0">
+              <div class="font-semibold text-foreground">Class 9, 10</div>
+              <div class="text-xs text-muted-foreground">SSC Preparation</div>
+            </div>
+            <i data-lucide="arrow-right" class="ml-auto h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"></i>
+          </a>
+
+          <a href="#courses" class="group flex items-center gap-4 rounded-xl border border-border bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-soft">
+            <span class="grid h-11 w-11 place-items-center rounded-lg bg-primary-gradient text-white shadow-soft">
+              <i data-lucide="graduation-cap" class="h-5 w-5"></i>
+            </span>
+            <div class="min-w-0">
+              <div class="font-semibold text-foreground">College</div>
+              <div class="text-xs text-muted-foreground">HSC Preparation</div>
+            </div>
+            <i data-lucide="arrow-right" class="ml-auto h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"></i>
+          </a>
+        </div>
+
+        <a href="#courses" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+          See All Courses
+          <i data-lucide="arrow-right" class="h-4 w-4"></i>
+        </a>
+      </div>
+
+      <!-- Card 2: Stats -->
+      <div class="rounded-2xl border border-border bg-white p-6 shadow-soft sm:p-8">
+        <span class="inline-flex items-center rounded-full bg-secondary/15 px-3 py-1 text-xs font-semibold text-secondary">
+          Trust & Numbers
+        </span>
+        <h3 class="mt-4 font-display text-2xl font-extrabold sm:text-3xl text-foreground">
+          See the stats!
+        </h3>
+        <p class="mt-1 text-sm font-medium text-secondary-foreground/70">The trust we are building.</p>
+
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          <div class="flex items-center gap-3 rounded-xl border border-border bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-soft">
+            <span class="grid h-11 w-11 place-items-center rounded-lg bg-gradient-to-br from-primary to-primary-glow text-white shadow-soft">
+              <i data-lucide="users" class="h-5 w-5"></i>
+            </span>
+            <div class="min-w-0">
+              <div class="text-lg font-extrabold text-foreground">258,541+</div>
+              <div class="text-xs text-muted-foreground">Active Students</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 rounded-xl border border-border bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-soft">
+            <span class="grid h-11 w-11 place-items-center rounded-lg bg-gradient-to-br from-primary to-primary-glow text-white shadow-soft">
+              <i data-lucide="play-circle" class="h-5 w-5"></i>
+            </span>
+            <div class="min-w-0">
+              <div class="text-lg font-extrabold text-foreground">65</div>
+              <div class="text-xs text-muted-foreground">Premium Courses</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 rounded-xl border border-border bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-soft">
+            <span class="grid h-11 w-11 place-items-center rounded-lg bg-gradient-to-br from-primary to-primary-glow text-white shadow-soft">
+              <i data-lucide="award" class="h-5 w-5"></i>
+            </span>
+            <div class="min-w-0">
+              <div class="text-lg font-extrabold text-foreground">28</div>
+              <div class="text-xs text-muted-foreground">Expert Teachers</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 rounded-xl border border-border bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-soft">
+            <span class="grid h-11 w-11 place-items-center rounded-lg bg-gradient-to-br from-primary to-primary-glow text-white shadow-soft">
+              <i data-lucide="video" class="h-5 w-5"></i>
+            </span>
+            <div class="min-w-0">
+              <div class="text-lg font-extrabold text-foreground">4,700+</div>
+              <div class="text-xs text-muted-foreground">Video Lessons</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ==================== FEATURES SECTION ==================== -->
+  <section id="featured" class="relative overflow-hidden bg-soft-gradient py-10 md:py-12 lg:py-14">
+    <div class="container-lms">
+      <div class="max-w-2xl mx-auto text-center">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+          <i data-lucide="sparkles" class="h-3 w-3"></i> Why EduSphere
+        </span>
+        <h2 class="mt-4 font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+          Everything you need to succeed
+        </h2>
+        <p class="mt-3 text-sm text-muted-foreground sm:text-base">
+          Powerful learning tools packed into one seamless experience.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Feature 1 -->
+        <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-elegant">
+          <div class="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary-gradient opacity-0 blur-2xl transition-opacity group-hover:opacity-30"></div>
+          <span class="relative inline-grid h-12 w-12 place-items-center rounded-xl bg-primary-gradient text-white shadow-soft">
+            <i data-lucide="video" class="h-5 w-5"></i>
+          </span>
+          <h4 class="relative mt-5 text-base font-bold text-foreground">HD Live Classes</h4>
+          <p class="relative mt-1.5 text-sm leading-relaxed text-muted-foreground">Interactive live sessions with real-time doubt solving.</p>
+          <div class="relative mt-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">01</div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-elegant">
+          <div class="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary-gradient opacity-0 blur-2xl transition-opacity group-hover:opacity-30"></div>
+          <span class="relative inline-grid h-12 w-12 place-items-center rounded-xl bg-primary-gradient text-white shadow-soft">
+            <i data-lucide="book-open" class="h-5 w-5"></i>
+          </span>
+          <h4 class="relative mt-5 text-base font-bold text-foreground">Structured Curriculum</h4>
+          <p class="relative mt-1.5 text-sm leading-relaxed text-muted-foreground">Carefully sequenced lessons designed by exam toppers.</p>
+          <div class="relative mt-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">02</div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-elegant">
+          <div class="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary-gradient opacity-0 blur-2xl transition-opacity group-hover:opacity-30"></div>
+          <span class="relative inline-grid h-12 w-12 place-items-center rounded-xl bg-primary-gradient text-white shadow-soft">
+            <i data-lucide="shield-check" class="h-5 w-5"></i>
+          </span>
+          <h4 class="relative mt-5 text-base font-bold text-foreground">Verified Instructors</h4>
+          <p class="relative mt-1.5 text-sm leading-relaxed text-muted-foreground">Learn from vetted, top-rated subject experts.</p>
+          <div class="relative mt-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">03</div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-elegant">
+          <div class="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary-gradient opacity-0 blur-2xl transition-opacity group-hover:opacity-30"></div>
+          <span class="relative inline-grid h-12 w-12 place-items-center rounded-xl bg-primary-gradient text-white shadow-soft">
+            <i data-lucide="award" class="h-5 w-5"></i>
+          </span>
+          <h4 class="relative mt-5 text-base font-bold text-foreground">Certificates</h4>
+          <p class="relative mt-1.5 text-sm leading-relaxed text-muted-foreground">Earn shareable certificates on course completion.</p>
+          <div class="relative mt-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">04</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INSTRUCTORS SECTION ==================== -->
+  <section id="instructors" class="relative overflow-hidden bg-soft-gradient py-10 md:py-12 lg:py-14">
+    <div class="container-lms">
+      <div class="max-w-2xl mx-auto text-center">
+      <span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+        <i data-lucide="sparkles" class="h-3 w-3"></i> Meet Our Instructors
+      </span>
+      <h2 class="mt-4 font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+        Learn from the best
+      </h2>
+      <p class="mt-3 text-sm text-muted-foreground sm:text-base">
+        Top-rated educators with proven results and years of experience.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- Instructor 1 -->
+      <div class="group">
+        <div class="relative mx-auto aspect-square w-full overflow-hidden rounded-2xl bg-primary-gradient shadow-soft transition-transform group-hover:-translate-y-1">
+          <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_20%,white,transparent_55%)]"></div>
+          <div class="absolute inset-0 grid place-items-center font-display text-5xl font-extrabold text-white/95">
+            NF
+          </div>
+          <div class="absolute inset-x-0 bottom-0 flex justify-center gap-2 p-3 opacity-0 transition-opacity group-hover:opacity-100">
+            <span class="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
+              View Profile
+            </span>
+          </div>
+        </div>
+        <h4 class="mt-4 text-base font-bold text-foreground">Niaz M. Faysal</h4>
+        <p class="text-sm text-muted-foreground">Physics · SSC/HSC</p>
+      </div>
+
+      <!-- Instructor 2 -->
+      <div class="group">
+        <div class="relative mx-auto aspect-square w-full overflow-hidden rounded-2xl bg-primary-gradient shadow-soft transition-transform group-hover:-translate-y-1">
+          <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_20%,white,transparent_55%)]"></div>
+          <div class="absolute inset-0 grid place-items-center font-display text-5xl font-extrabold text-white/95">
+            RA
+          </div>
+          <div class="absolute inset-x-0 bottom-0 flex justify-center gap-2 p-3 opacity-0 transition-opacity group-hover:opacity-100">
+            <span class="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
+              View Profile
+            </span>
+          </div>
+        </div>
+        <h4 class="mt-4 text-base font-bold text-foreground">Rafiul Alam</h4>
+        <p class="text-sm text-muted-foreground">Mathematics</p>
+      </div>
+
+      <!-- Instructor 3 -->
+      <div class="group">
+        <div class="relative mx-auto aspect-square w-full overflow-hidden rounded-2xl bg-primary-gradient shadow-soft transition-transform group-hover:-translate-y-1">
+          <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_20%,white,transparent_55%)]"></div>
+          <div class="absolute inset-0 grid place-items-center font-display text-5xl font-extrabold text-white/95">
+            SR
+          </div>
+          <div class="absolute inset-x-0 bottom-0 flex justify-center gap-2 p-3 opacity-0 transition-opacity group-hover:opacity-100">
+            <span class="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
+              View Profile
+            </span>
+          </div>
+        </div>
+        <h4 class="mt-4 text-base font-bold text-foreground">Sadia Rahman</h4>
+        <p class="text-sm text-muted-foreground">Chemistry</p>
+      </div>
+
+      <!-- Instructor 4 -->
+      <div class="group">
+        <div class="relative mx-auto aspect-square w-full overflow-hidden rounded-2xl bg-primary-gradient shadow-soft transition-transform group-hover:-translate-y-1">
+          <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_20%,white,transparent_55%)]"></div>
+          <div class="absolute inset-0 grid place-items-center font-display text-5xl font-extrabold text-white/95">
+            TH
+          </div>
+          <div class="absolute inset-x-0 bottom-0 flex justify-center gap-2 p-3 opacity-0 transition-opacity group-hover:opacity-100">
+            <span class="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
+              View Profile
+            </span>
+          </div>
+        </div>
+        <h4 class="mt-4 text-base font-bold text-foreground">Tanvir Hasan</h4>
+        <p class="text-sm text-muted-foreground">ICT & Programming</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ==================== TESTIMONIALS ==================== -->
+  <section id="exams" class="relative overflow-hidden bg-soft-gradient py-24">
+    <div class="container-lms">
+      <div class="max-w-2xl mx-auto text-center">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+          <i data-lucide="sparkles" class="h-3 w-3"></i> Student Stories
+        </span>
+        <h2 class="mt-4 font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+          Loved by learners everywhere
+        </h2>
+        <p class="mt-3 text-sm text-muted-foreground sm:text-base">
+          Real results from students who chose EduSphere.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <!-- Testimonial 1 -->
+        <div class="relative rounded-2xl border border-border bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elegant">
+          <div class="absolute -top-3 left-6 grid h-8 w-8 place-items-center rounded-full bg-primary-gradient text-lg font-bold text-white shadow-soft">
+            “
+          </div>
+          <div class="flex items-center gap-1 text-[#f59e0b]">
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+          </div>
+          <p class="mt-4 text-sm leading-relaxed text-foreground/90">
+            "The live classes and notes are top-tier. I improved my scores by two whole grades in three months."
+          </p>
+          <div class="mt-6 flex items-center gap-3 border-t border-border pt-4">
+            <span class="grid h-10 w-10 place-items-center rounded-full bg-primary-gradient text-sm font-bold text-white">
+              A
+            </span>
+            <div>
+              <div class="text-sm font-semibold text-foreground">Ayesha Siddika</div>
+              <div class="text-xs text-muted-foreground">HSC 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="relative rounded-2xl border border-border bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elegant">
+          <div class="absolute -top-3 left-6 grid h-8 w-8 place-items-center rounded-full bg-primary-gradient text-lg font-bold text-white shadow-soft">
+            “
+          </div>
+          <div class="flex items-center gap-1 text-[#f59e0b]">
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+          </div>
+          <p class="mt-4 text-sm leading-relaxed text-foreground/90">
+            "Best combo package I've bought. Instructors explain concepts so clearly."
+          </p>
+          <div class="mt-6 flex items-center gap-3 border-t border-border pt-4">
+            <span class="grid h-10 w-10 place-items-center rounded-full bg-primary-gradient text-sm font-bold text-white">
+              M
+            </span>
+            <div>
+              <div class="text-sm font-semibold text-foreground">Mahin Rahman</div>
+              <div class="text-xs text-muted-foreground">Admission Candidate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="relative rounded-2xl border border-border bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elegant">
+          <div class="absolute -top-3 left-6 grid h-8 w-8 place-items-center rounded-full bg-primary-gradient text-lg font-bold text-white shadow-soft">
+            “
+          </div>
+          <div class="flex items-center gap-1 text-[#f59e0b]">
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+          </div>
+          <p class="mt-4 text-sm leading-relaxed text-foreground/90">
+            "Clean app, super smooth videos, and doubt solving is fast. Highly recommended."
+          </p>
+          <div class="mt-6 flex items-center gap-3 border-t border-border pt-4">
+            <span class="grid h-10 w-10 place-items-center rounded-full bg-primary-gradient text-sm font-bold text-white">
+              R
+            </span>
+            <div>
+              <div class="text-sm font-semibold text-foreground">Rakib Hossain</div>
+              <div class="text-xs text-muted-foreground">SSC Batch</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA SECTION ==================== -->
+  <section class="relative overflow-hidden bg-soft-gradient py-24">
+    <div class="container-lms">
+      <div class="relative overflow-hidden rounded-3xl bg-[linear-gradient(135deg,#180e2b_0%,#2a1250_45%,#43187a_100%)] p-10 text-white shadow-elegant sm:p-14">
+      <div class="absolute inset-0 bg-mesh opacity-80"></div>
+      <div class="absolute -right-16 -top-16 h-72 w-72 rounded-full bg-[#db2777]/30 blur-3xl"></div>
+      <div class="absolute -bottom-16 -left-16 h-72 w-72 rounded-full bg-[#f97316]/25 blur-3xl"></div>
+      <div class="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium backdrop-blur">
+            <i data-lucide="heart" class="h-3.5 w-3.5 text-[#fb7185]"></i> Join 250,000+ learners
+          </span>
+          <h2 class="mt-4 font-display text-3xl font-extrabold leading-tight sm:text-4xl">
+            Start learning today.<br>
+            <span class="bg-gradient-to-r from-white via-purple-200 to-[#fb7185] bg-clip-text text-transparent">
+              Your future self will thank you.
+            </span>
+          </h2>
+          <p class="mt-3 max-w-xl text-white/75">
+            Sign up free and get instant access to sample lessons from every category.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3 sm:flex-row lg:justify-end">
+          <a href="#courses" class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary shadow-elegant transition-all hover:-translate-y-0.5 hover:shadow-glow">
+            Create Free Account
+            <i data-lucide="arrow-right" class="h-4 w-4"></i>
+          </a>
+          <a href="#courses" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/10">
+            <i data-lucide="layout-grid" class="h-4 w-4"></i>
+            Browse Courses
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-soft-gradient">
+    <div class="container-lms py-16">
+      <div class="grid gap-12 lg:grid-cols-[1.4fr_repeat(3,1fr)_1.2fr]">
+        <!-- Brand Column -->
+        <div>
+          <a href="#" class="flex items-center gap-2">
+            <span class="grid h-9 w-9 place-items-center rounded-xl bg-primary-gradient text-white">
+              <i data-lucide="graduation-cap" class="h-5 w-5"></i>
+            </span>
+            <span class="font-display text-lg font-extrabold text-foreground">
+              Edu<span class="gradient-text">Sphere</span>
+            </span>
+          </a>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+            A modern learning platform built for ambitious learners and world-class educators.
+          </p>
+          <div class="mt-5 flex gap-2">
+            <a href="#" aria-label="Facebook" class="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+              <i data-lucide="facebook" class="h-4 w-4"></i>
+            </a>
+            <a href="#" aria-label="Twitter" class="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+              <i data-lucide="twitter" class="h-4 w-4"></i>
+            </a>
+            <a href="#" aria-label="Instagram" class="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+              <i data-lucide="instagram" class="h-4 w-4"></i>
+            </a>
+            <a href="#" aria-label="Youtube" class="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+              <i data-lucide="youtube" class="h-4 w-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Learn Links -->
+        <div>
+          <h4 class="text-sm font-semibold text-foreground">Learn</h4>
+          <ul class="mt-4 space-y-2.5">
+            <li><a href="#courses" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Courses</a></li>
+            <li><a href="#courses" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Live Classes</a></li>
+            <li><a href="#instructors" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Instructors</a></li>
+            <li><a href="#ebooks" class="text-sm text-muted-foreground transition-colors hover:text-foreground">E-Books</a></li>
+            <li><a href="#exams" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Exams</a></li>
+          </ul>
+        </div>
+
+        <!-- Company Links -->
+        <div>
+          <h4 class="text-sm font-semibold text-foreground">Company</h4>
+          <ul class="mt-4 space-y-2.5">
+            <li><a href="#" class="text-sm text-muted-foreground transition-colors hover:text-foreground">About</a></li>
+            <li><a href="#" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Careers</a></li>
+            <li><a href="#" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Press</a></li>
+            <li><a href="#" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Blog</a></li>
+            <li><a href="#" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Support Links -->
+        <div>
+          <h4 class="text-sm font-semibold text-foreground">Support</h4>
+          <ul class="mt-4 space-y-2.5">
+            <li><a href="#" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Help Center</a></li>
+            <li><a href="#" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Community</a></li>
+            <li><a href="#" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Terms</a></li>
+            <li><a href="#" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Privacy</a></li>
+            <li><a href="#" class="text-sm text-muted-foreground transition-colors hover:text-foreground">Refund Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Column -->
+        <div>
+          <h4 class="text-sm font-semibold text-foreground">Newsletter</h4>
+          <p class="mt-4 text-sm text-muted-foreground">
+            Get weekly learning tips and new course drops.
+          </p>
+          <form onsubmit="event.preventDefault();" class="mt-4 flex items-center gap-2 rounded-full border border-border bg-white p-1 pl-4 focus-within:border-primary">
+            <i data-lucide="mail" class="h-4 w-4 text-muted-foreground"></i>
+            <input type="email" placeholder="you@email.com" class="min-w-0 flex-1 bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground">
+            <button type="submit" class="rounded-full bg-primary-gradient px-4 py-2 text-xs font-semibold text-white shadow-sm transition-transform hover:scale-105">
+              Join
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Credits -->
+      <div class="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 sm:flex-row">
+        <p class="text-xs text-muted-foreground">© 2026 EduSphere. All rights reserved.</p>
+        <p class="text-xs text-muted-foreground">Crafted with care for learners worldwide.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="js/main.js"></script>
+</body>
 </html>

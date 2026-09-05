@@ -1,0 +1,162 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap');
+
+:root {
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Outfit', 'Manrope', sans-serif;
+
+  --color-primary: #7c3aed;
+  --color-primary-dark: #5b21b6;
+  --color-primary-light: #a855f7;
+  --color-secondary: #f97316;
+  --color-accent: #d946ef;
+  
+  --color-bg-light: #ffffff;
+  --color-surface-soft: #faf7fd;
+  --color-surface-card: #ffffff;
+  --color-border-subtle: #f0ebf8;
+  --color-border-light: #e5e0f0;
+  
+  --color-text-main: #1a1230;
+  --color-text-muted: #6b637d;
+  --color-text-subtle: #968fa7;
+
+  --gradient-primary: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c026d3 100%);
+  --gradient-btn: linear-gradient(105deg, #7c3aed 0%, #d946ef 55%, #fb7185 100%);
+  --gradient-hero: linear-gradient(160deg, #0b0618 0%, #1a0b2e 42%, #2a1250 72%, #1e0a36 100%);
+  --gradient-accent: linear-gradient(135deg, #f97316, #fb7185);
+  --gradient-soft: #faf7fd;
+
+  --shadow-soft: 0 8px 24px -10px rgba(124, 58, 237, 0.18);
+  --shadow-card: 0 10px 30px -10px rgba(26, 18, 48, 0.08);
+  --shadow-elegant: 0 24px 48px -20px rgba(124, 58, 237, 0.35);
+  --shadow-glow: 0 0 40px rgba(217, 70, 239, 0.3);
+}
+
+/* Base styling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  background-color: #faf7fd;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Container */
+.container-lms {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1240px;
+  padding-inline: 1.25rem;
+}
+
+/* Gradients and Special Utilities */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-btn {
+  background: var(--gradient-btn);
+}
+
+.bg-hero-gradient {
+  background: var(--gradient-hero);
+}
+
+.bg-primary-gradient {
+  background: var(--gradient-primary);
+}
+
+.bg-soft-gradient {
+  background: var(--gradient-soft);
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-elegant {
+  box-shadow: var(--shadow-elegant);
+}
+
+.bg-mesh {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(219, 39, 119, 0.18), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(251, 146, 60, 0.16), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(124, 58, 237, 0.15), transparent 55%);
+}
+
+/* Header transition effects */
+.header-pill {
+  transition: max-width 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-radius 500ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 700ms ease,
+              padding 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header-scrolled .header-pill {
+  border-radius: 0 !important;
+  max-width: 100vw !important;
+  box-shadow: 0 8px 30px -12px rgba(15, 10, 40, 0.18);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Hero Carousel Transitions */
+.carousel-slide {
+  transition: opacity 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  transform: scale(1);
+  position: relative;
+  z-index: 10;
+}
+
+.carousel-slide:not(.active) {
+  opacity: 0;
+  transform: scale(1.04);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1edfb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a855f7;
+}
