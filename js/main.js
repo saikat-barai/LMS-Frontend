@@ -237,4 +237,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   updateActiveNavLink();
+
+  // 6. Testimonials Swiper Carousel Initialization
+  if (typeof Swiper !== 'undefined' && document.querySelector('.testimonial-swiper')) {
+    new Swiper('.testimonial-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      grabCursor: true,
+      autoplay: {
+        delay: 4500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      pagination: {
+        el: '.testimonial-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '#testimonial-next',
+        prevEl: '#testimonial-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 24,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 24,
+        }
+      }
+    });
+  }
 });
