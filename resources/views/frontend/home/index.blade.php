@@ -523,7 +523,7 @@
                 Learn from <span class="bg-[linear-gradient(90deg,#3b2670_0%,#8b5cf6_100%)] bg-clip-text text-transparent">the best</span>
             </h2>
 
-            <a href="#instructors" class="btn-primary shrink-0 px-4 py-2.5 text-sm">
+            <a href="{{ route('instructors') }}" class="btn-primary shrink-0 px-4 py-2.5 text-sm">
                 <span>See All</span>
                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
             </a>

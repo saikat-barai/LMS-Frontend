@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Frontend\CoursesController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\InstructorsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
+Route::get('/instructors', [InstructorsController::class, 'index'])->name('instructors');

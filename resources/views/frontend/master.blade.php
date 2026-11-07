@@ -84,9 +84,9 @@
                         Courses
                         <span class="active-indicator {{ request()->routeIs('courses*') ? '' : 'is-hidden' }}"></span>
                     </a>
-                    <a href="{{ route('home') }}#instructors" data-nav-target="instructors" class="desktop-nav-link">
+                    <a href="{{ route('instructors') }}" data-nav-target="instructors" class="desktop-nav-link {{ request()->routeIs('instructors*') ? 'is-active' : '' }}">
                         Instructors
-                        <span class="active-indicator is-hidden"></span>
+                        <span class="active-indicator {{ request()->routeIs('instructors*') ? '' : 'is-hidden' }}"></span>
                     </a>
                     <a href="{{ route('home') }}#exams" data-nav-target="exams" class="desktop-nav-link">
                         Exams
@@ -114,7 +114,7 @@
             <nav class="header-mobile-nav">
                 <a href="{{ route('home') }}" class="header-mobile-link {{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
                 <a href="{{ route('courses') }}" class="header-mobile-link {{ request()->routeIs('courses*') ? 'is-active' : '' }}">Courses</a>
-                <a href="{{ route('home') }}#instructors" class="header-mobile-link">Instructors</a>
+                <a href="{{ route('instructors') }}" class="header-mobile-link {{ request()->routeIs('instructors*') ? 'is-active' : '' }}">Instructors</a>
                 <a href="{{ route('home') }}#exams" class="header-mobile-link">Exams</a>
                 <a href="{{ route('home') }}#ebooks" class="header-mobile-link">E-Books</a>
                 <div class="header-mobile-cta">
@@ -165,7 +165,7 @@
                     <ul class="mt-4 space-y-2.5">
                         <li><a href="#" class="text-[0.95rem] text-slate-300/90 transition-colors hover:text-white">About Us</a></li>
                         <li><a href="{{ route('courses') }}" class="text-[0.95rem] text-slate-300/90 transition-colors hover:text-white">All Courses</a></li>
-                        <li><a href="{{ route('home') }}#instructors" class="text-[0.95rem] text-slate-300/90 transition-colors hover:text-white">Instructors</a></li>
+                        <li><a href="{{ route('instructors') }}" class="text-[0.95rem] text-slate-300/90 transition-colors hover:text-white">Instructors</a></li>
                         <li><a href="#" class="text-[0.95rem] text-slate-300/90 transition-colors hover:text-white">Contact Us</a></li>
                     </ul>
                 </div>
@@ -228,7 +228,7 @@
                 <span class="mobile-bottom-label">Courses</span>
             </a>
 
-            <a href="{{ route('home') }}#instructors" class="mobile-bottom-link" data-bottom-nav="instructors">
+            <a href="{{ route('instructors') }}" class="mobile-bottom-link {{ request()->routeIs('instructors*') ? 'is-active' : '' }}" data-bottom-nav="instructors">
                 <i data-lucide="users" class="mobile-bottom-icon"></i>
                 <span class="mobile-bottom-label">Teachers</span>
             </a>
