@@ -88,6 +88,10 @@
                         Instructors
                         <span class="active-indicator {{ request()->routeIs('instructors*') ? '' : 'is-hidden' }}"></span>
                     </a>
+                    <a href="{{ route('products') }}" data-nav-target="products" class="desktop-nav-link {{ request()->routeIs('products*') ? 'is-active' : '' }}">
+                        Products
+                        <span class="active-indicator {{ request()->routeIs('products*') ? '' : 'is-hidden' }}"></span>
+                    </a>
                     <a href="{{ route('home') }}#exams" data-nav-target="exams" class="desktop-nav-link">
                         Exams
                         <span class="active-indicator is-hidden"></span>
@@ -115,6 +119,7 @@
                 <a href="{{ route('home') }}" class="header-mobile-link {{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
                 <a href="{{ route('courses') }}" class="header-mobile-link {{ request()->routeIs('courses*') ? 'is-active' : '' }}">Courses</a>
                 <a href="{{ route('instructors') }}" class="header-mobile-link {{ request()->routeIs('instructors*') ? 'is-active' : '' }}">Instructors</a>
+                <a href="{{ route('products') }}" class="header-mobile-link {{ request()->routeIs('products*') ? 'is-active' : '' }}">Products</a>
                 <a href="{{ route('home') }}#exams" class="header-mobile-link">Exams</a>
                 <a href="{{ route('home') }}#ebooks" class="header-mobile-link">E-Books</a>
                 <div class="header-mobile-cta">
@@ -169,6 +174,7 @@
                         <li><a href="#" class="text-[0.95rem] text-slate-300/90 transition-colors hover:text-white">About Us</a></li>
                         <li><a href="{{ route('courses') }}" class="text-[0.95rem] text-slate-300/90 transition-colors hover:text-white">All Courses</a></li>
                         <li><a href="{{ route('instructors') }}" class="text-[0.95rem] text-slate-300/90 transition-colors hover:text-white">Instructors</a></li>
+                        <li><a href="{{ route('products') }}" class="text-[0.95rem] text-slate-300/90 transition-colors hover:text-white">Products</a></li>
                         <li><a href="#" class="text-[0.95rem] text-slate-300/90 transition-colors hover:text-white">Contact Us</a></li>
                     </ul>
                 </div>
