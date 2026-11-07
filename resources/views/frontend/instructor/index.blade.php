@@ -15,8 +15,8 @@
                 </h1>
             </div>
 
-            <!-- Subject Filter Tabs (Matching Courses Page Filter Style) -->
-            <div class="mt-6 flex items-center gap-2.5 overflow-x-auto pb-2 sm:mt-8 sm:flex-wrap sm:justify-center sm:gap-3 sm:overflow-visible sm:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="tablist" aria-label="Instructor Subjects">
+            <!-- Subject Filter Tabs (Wraps into Multiple Rows on Mobile & Desktop) -->
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-2 sm:mt-8 sm:gap-3" role="tablist" aria-label="Instructor Subjects">
                 <button type="button" data-instructor-filter="all" class="course-filter-pill is-active inline-flex shrink-0 items-center gap-2 rounded-lg border border-[#3b2670] bg-[#3b2670] px-4 py-2 text-xs font-semibold text-white hover:text-white shadow-[0_8px_20px_-6px_rgba(59,38,112,0.45)] transition-all duration-200 sm:px-5 sm:py-2.5 sm:text-sm">
                     <span>All Teachers</span>
                     <span class="filter-count rounded-md bg-white/20 px-2 py-0.5 text-[11px] font-semibold text-white">29</span>

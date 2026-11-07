@@ -12,3 +12,4 @@ class ProductsController extends Controller
         return view('frontend.product.index');
     }
 }
+
