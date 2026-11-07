@@ -52,17 +52,131 @@
   --shadow-cta: 0 10px 28px -8px rgba(236, 72, 153, 0.45);
 }
 
-/* Base styling */
+/* Base styling — Anti-FOUC & Smooth Native Scrolling */
 html {
-  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
   font-family: var(--font-sans);
   color: var(--color-text-main);
   background-color: var(--color-surface-soft);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.site-main {
+  flex: 1 0 auto;
+  display: block;
+  width: 100%;
+  min-height: calc(100vh - 4.25rem);
+  background-color: var(--color-surface-soft);
+}
+
+.site-footer {
+  flex-shrink: 0;
+  width: 100%;
+  background-color: #160f30;
+  color: #ffffff;
+}
+
+/* Prevent raw images / icons from bumping layout before Tailwind JS initializes */
+.header-logo-img {
+  height: 2.25rem;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .header-logo-img {
+    height: 2.5rem;
+    max-width: 165px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-logo-img {
+    height: 2.75rem;
+    max-width: 180px;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Polished Form Controls — Zero Focus Bump & Clean 1px Border Transition */
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+select,
+textarea {
+  outline: 0 !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #cbd5e1;
+  transition: border-color 150ms ease, background-color 150ms ease !important;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):hover,
+select:hover,
+textarea:hover {
+  border-color: #94a3b8;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus,
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus-visible,
+select:focus,
+select:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: 0 !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  border-color: #6d28d9 !important;
+  background-color: #ffffff !important;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem 1rem;
+  padding-right: 2.25rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+i[data-lucide] {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Eliminate GPU scroll lag caused by expensive 90px-140px Gaussian blur filters */
+[class*="blur-["] {
+  display: none !important;
+}
+
+.hero-glow-left,
+.hero-glow-right {
+  display: none !important;
 }
 
 h1, h2, h3, h4, h5, h6, .font-display {

@@ -1425,7 +1425,7 @@
                 </div>
 
                 <div class="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center lg:shrink-0">
-                    <a href="#courses" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-[#3b2670] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#f4f0ff] hover:shadow-md sm:w-auto">
+                    <a href="{{ route('student.register') }}" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-[#3b2670] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#f4f0ff] hover:shadow-md sm:w-auto">
                         <span>Create Free Account</span>
                         <i data-lucide="arrow-right" class="h-4 w-4"></i>
                     </a>

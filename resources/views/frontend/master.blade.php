@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -55,7 +55,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}?v={{ filemtime(public_path('assets/frontend/css/style.css')) }}">
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -71,7 +71,7 @@
             <div id="header-content" class="header-inner">
                 <!-- Logo -->
                 <a href="{{ route('home') }}" class="header-logo">
-                    <img src="{{ asset('assets/frontend/images/Z Academy Glossy Purple Logo.png') }}?v=2" alt="Z Academy" class="h-9 w-auto object-contain sm:h-10 lg:h-11">
+                    <img src="{{ asset('assets/frontend/images/Z Academy Glossy Purple Logo.png') }}?v=2" alt="Z Academy" width="122" height="40" class="header-logo-img h-9 w-auto object-contain sm:h-10 lg:h-11">
                 </a>
 
                 <!-- Desktop Navigation -->
@@ -100,7 +100,7 @@
 
                 <!-- Action Buttons -->
                 <div class="header-actions">
-                    <a href="#login" class="header-cta-btn">Login</a>
+                    <a href="{{ route('student.login') }}" class="header-cta-btn">Login</a>
                     <button id="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" class="header-menu-btn">
                         <i id="menu-icon-open" data-lucide="align-right" class="header-menu-icon"></i>
                         <i id="menu-icon-close" data-lucide="x" class="header-menu-icon is-hidden"></i>
@@ -118,16 +118,19 @@
                 <a href="{{ route('home') }}#exams" class="header-mobile-link">Exams</a>
                 <a href="{{ route('home') }}#ebooks" class="header-mobile-link">E-Books</a>
                 <div class="header-mobile-cta">
-                    <a href="#login" class="header-cta-btn header-cta-btn--block">Login</a>
+                    <a href="{{ route('student.login') }}" class="header-cta-btn header-cta-btn--block">Login</a>
                 </div>
             </nav>
         </div>
     </header>
 
-    @yield('content')
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main id="main-content" class="site-main">
+        @yield('content')
+    </main>
 
     <!-- ==================== FOOTER ==================== -->
-    <footer class="w-full border-t border-[#3b2670]/20 bg-[#160f30] pb-16 text-white lg:pb-0">
+    <footer class="site-footer w-full border-t border-[#3b2670]/20 bg-[#160f30] pb-16 text-white lg:pb-0">
         <div class="container-lms py-10 sm:py-12">
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.85fr_0.95fr_1.2fr] lg:gap-10">
                 <!-- 1. Brand & Social Media -->
@@ -233,7 +236,7 @@
                 <span class="mobile-bottom-label">Teachers</span>
             </a>
 
-            <a href="#login" class="mobile-bottom-link" data-bottom-nav="login">
+            <a href="{{ route('student.dashboard') }}" class="mobile-bottom-link {{ request()->routeIs('student.*') ? 'is-active' : '' }}" data-bottom-nav="login">
                 <i data-lucide="user" class="mobile-bottom-icon"></i>
                 <span class="mobile-bottom-label">Profile</span>
             </a>
@@ -243,7 +246,7 @@
     <!-- Swiper JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- Main JavaScript File -->
-    <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/main.js') }}?v={{ filemtime(public_path('assets/frontend/js/main.js')) }}"></script>
 </body>
 
 </html>

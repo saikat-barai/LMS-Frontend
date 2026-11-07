@@ -126,26 +126,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const bottomNavLinks = document.querySelectorAll('.mobile-bottom-link');
   const isHomePage = Boolean(document.getElementById('instructors') || document.getElementById('ebooks'));
 
+  const sectionElements = isHomePage
+    ? [
+        { id: 'ebooks', el: document.getElementById('ebooks'), top: 0 },
+        { id: 'exams', el: document.getElementById('exams'), top: 0 },
+        { id: 'instructors', el: document.getElementById('instructors'), top: 0 },
+        { id: 'courses', el: document.getElementById('courses'), top: 0 },
+      ].filter((s) => Boolean(s.el))
+    : [];
+
+  function cacheSectionOffsets() {
+    sectionElements.forEach((sec) => {
+      sec.top = sec.el.offsetTop;
+    });
+  }
+
+  let activeSectionId = '';
+
   function updateActiveNavLink() {
     if (!isHomePage) return;
 
     const scrollPos = window.scrollY + 200;
     let currentSection = 'home';
 
-    // Check each section position from bottom to top
-    const sectionElements = [
-      { id: 'ebooks', el: document.getElementById('ebooks') },
-      { id: 'exams', el: document.getElementById('exams') },
-      { id: 'instructors', el: document.getElementById('instructors') },
-      { id: 'courses', el: document.getElementById('courses') },
-    ];
-
     for (const sec of sectionElements) {
-      if (sec.el && sec.el.offsetTop <= scrollPos) {
+      if (sec.top <= scrollPos) {
         currentSection = sec.id;
         break;
       }
     }
+
+    if (currentSection === activeSectionId) return;
+    activeSectionId = currentSection;
 
     navLinks.forEach((link) => {
       const target = link.getAttribute('data-nav-target');
@@ -177,8 +189,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (isHomePage) {
+    cacheSectionOffsets();
+    window.addEventListener('resize', cacheSectionOffsets, { passive: true });
+    window.addEventListener('load', cacheSectionOffsets, { once: true });
+
+    let navTicking = false;
     window.addEventListener('scroll', () => {
-      window.requestAnimationFrame(updateActiveNavLink);
+      if (!navTicking) {
+        window.requestAnimationFrame(() => {
+          updateActiveNavLink();
+          navTicking = false;
+        });
+        navTicking = true;
+      }
     }, { passive: true });
 
     updateActiveNavLink();
