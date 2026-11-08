@@ -103,7 +103,19 @@
                                 <i data-lucide="school" class="h-4 w-4"></i>
                                 <span>Classes</span>
                             </span>
-                            <span class="rounded bg-white/10 px-1.5 py-0.5 text-[11px] font-semibold text-slate-300">06</span>
+                            <span class="rounded bg-white/10 px-1.5 py-0.5 text-[11px] font-semibold text-slate-300">
+                                {{ str_pad((string) \App\Models\AcademicClass::count(), 2, '0', STR_PAD_LEFT) }}
+                            </span>
+                        </a>
+
+                        <a href="{{ route('admin.subjects.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.subjects.*') ? 'is-active' : '' }}">
+                            <span class="flex items-center gap-2.5">
+                                <i data-lucide="book-marked" class="h-4 w-4"></i>
+                                <span>Subjects</span>
+                            </span>
+                            <span class="rounded bg-white/10 px-1.5 py-0.5 text-[11px] font-semibold text-slate-300">
+                                {{ str_pad((string) \App\Models\Subject::count(), 2, '0', STR_PAD_LEFT) }}
+                            </span>
                         </a>
 
                         <a href="#" class="sidebar-nav-link">
@@ -152,12 +164,14 @@
                             <span class="rounded bg-white/10 px-1.5 py-0.5 text-[11px] font-semibold text-slate-300">1,840</span>
                         </a>
 
-                        <a href="#" class="sidebar-nav-link">
+                        <a href="{{ route('admin.instructors.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.instructors.*') ? 'is-active' : '' }}">
                             <span class="flex items-center gap-2.5">
                                 <i data-lucide="users" class="h-4 w-4"></i>
                                 <span>Instructors</span>
                             </span>
-                            <span class="rounded bg-white/10 px-1.5 py-0.5 text-[11px] font-semibold text-slate-300">29</span>
+                            <span class="rounded bg-white/10 px-1.5 py-0.5 text-[11px] font-semibold text-slate-300">
+                                {{ str_pad((string) \App\Models\Admin::where('role', \App\Enums\AdminRole::Teacher)->count(), 2, '0', STR_PAD_LEFT) }}
+                            </span>
                         </a>
                     </nav>
                 </div>

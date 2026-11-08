@@ -174,51 +174,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 6. Classes Module: Search, Status Filter, Image Preview, and Add/Edit Form Toggle
-    const classSearchInput = document.getElementById('class-search-input');
-    const classStatusFilter = document.getElementById('class-status-filter');
-    const classRows = document.querySelectorAll('[data-class-row]');
-    const classEmptyState = document.getElementById('class-empty-state');
-    const classCountBadge = document.getElementById('class-count-badge');
-
-    const filterClassTable = () => {
-        if (!classRows.length) return;
-        const query = (classSearchInput ? classSearchInput.value : '').trim().toLowerCase();
-        const status = classStatusFilter ? classStatusFilter.value : 'all';
-        let visibleCount = 0;
-
-        classRows.forEach((row) => {
-            const rowName = row.getAttribute('data-name') || '';
-            const rowStatus = row.getAttribute('data-status') || '';
-            const matchesName = !query || rowName.includes(query);
-            const matchesStatus = status === 'all' || rowStatus === status;
-
-            if (matchesName && matchesStatus) {
-                row.classList.remove('hidden');
-                visibleCount++;
-            } else {
-                row.classList.add('hidden');
-            }
-        });
-
-        if (classEmptyState) {
-            classEmptyState.classList.toggle('hidden', visibleCount > 0);
-        }
-        if (classCountBadge) {
-            classCountBadge.textContent = `${visibleCount} ${visibleCount === 1 ? 'Class' : 'Classes'}`;
-        }
-    };
-
-    if (classSearchInput) {
-        classSearchInput.addEventListener('input', filterClassTable);
-    }
-    if (classStatusFilter) {
-        classStatusFilter.addEventListener('change', filterClassTable);
-    }
-
-    // Class Form Elements
+    // 6. Classes & Subjects Module: Live Image Preview & Dynamic Add/Edit Form Mode
     const classFormCard = document.getElementById('class-form-card');
     const classForm = document.getElementById('class-Quick-form');
+    const classFormMethod = document.getElementById('class-form-method');
     const classFormTitle = document.getElementById('class-form-title');
     const classFormSubtitle = document.getElementById('class-form-subtitle');
     const classFormSubmitText = document.getElementById('class-form-submit-text');
@@ -229,14 +188,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const classImagePreview = document.getElementById('class-image-preview');
     const classImagePlaceholder = document.getElementById('class-image-placeholder');
     const classImageLabel = document.getElementById('class-image-label');
-    const topAddClassBtn = document.getElementById('top-add-class-btn');
+    const entityLabel = (classForm && classForm.getAttribute('data-entity-label')) || 'Class';
 
-    const resetClassForm = (focusInput = false) => {
+    const resetClassForm = () => {
         if (!classForm) return;
         classForm.reset();
-        if (classFormTitle) classFormTitle.textContent = 'Add New Class';
-        if (classFormSubtitle) classFormSubtitle.textContent = 'Create a new academic class';
-        if (classFormSubmitText) classFormSubmitText.textContent = 'Save Class';
+        const storeUrl = classForm.getAttribute('data-store-url');
+        if (storeUrl) {
+            classForm.setAttribute('action', storeUrl);
+        }
+        if (classFormMethod) {
+            classFormMethod.value = 'POST';
+        }
+        if (classFormTitle) classFormTitle.textContent = `Add New ${entityLabel}`;
+        if (classFormSubtitle) classFormSubtitle.textContent = `Create a new academic ${entityLabel.toLowerCase()}`;
+        if (classFormSubmitText) classFormSubmitText.textContent = `Save ${entityLabel}`;
         if (classFormCancel) classFormCancel.classList.add('hidden');
         if (classImagePreview) {
             classImagePreview.src = '';
@@ -248,18 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (classImageLabel) {
             classImageLabel.textContent = 'Click to upload image';
         }
-        if (focusInput && classNameInput && classFormCard) {
-            classFormCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            setTimeout(() => classNameInput.focus(), 150);
-        }
     };
 
-    if (topAddClassBtn) {
-        topAddClassBtn.addEventListener('click', () => resetClassForm(true));
-    }
-
     if (classFormCancel) {
-        classFormCancel.addEventListener('click', () => resetClassForm(false));
+        classFormCancel.addEventListener('click', resetClassForm);
     }
 
     if (classImageInput) {
@@ -286,15 +244,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('[data-edit-class]').forEach((btn) => {
         btn.addEventListener('click', () => {
+            const itemLabel = btn.getAttribute('data-entity-label') || entityLabel;
+            const updateUrl = btn.getAttribute('data-update-url') || '';
             const name = btn.getAttribute('data-class-name') || '';
             const status = btn.getAttribute('data-class-status') || 'active';
             const image = btn.getAttribute('data-class-image') || '';
 
+            if (classForm && updateUrl) {
+                classForm.setAttribute('action', updateUrl);
+            }
+            if (classFormMethod) {
+                classFormMethod.value = 'PUT';
+            }
             if (classNameInput) classNameInput.value = name;
             if (classStatusInput) classStatusInput.value = status;
-            if (classFormTitle) classFormTitle.textContent = 'Edit Class';
-            if (classFormSubtitle) classFormSubtitle.textContent = 'Update selected class details';
-            if (classFormSubmitText) classFormSubmitText.textContent = 'Update Class';
+            if (classFormTitle) classFormTitle.textContent = `Edit ${itemLabel}`;
+            if (classFormSubtitle) classFormSubtitle.textContent = `Update selected ${itemLabel.toLowerCase()} details`;
+            if (classFormSubmitText) classFormSubmitText.textContent = `Update ${itemLabel}`;
             if (classFormCancel) classFormCancel.classList.remove('hidden');
 
             if (image && classImagePreview) {
@@ -302,6 +268,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 classImagePreview.classList.remove('hidden');
                 if (classImagePlaceholder) classImagePlaceholder.classList.add('hidden');
                 if (classImageLabel) classImageLabel.textContent = 'Change current image';
+            } else if (classImagePreview) {
+                classImagePreview.src = '';
+                classImagePreview.classList.add('hidden');
+                if (classImagePlaceholder) classImagePlaceholder.classList.remove('hidden');
+                if (classImageLabel) classImageLabel.textContent = 'Click to upload image';
             }
 
             if (classFormCard && classNameInput) {
@@ -311,23 +282,200 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    if (classForm) {
-        classForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const isEditing = classFormSubmitText && classFormSubmitText.textContent === 'Update Class';
-            const nameVal = classNameInput ? classNameInput.value.trim() : 'Class';
-            window.showToast(
-                isEditing ? `"${nameVal}" updated successfully.` : `"${nameVal}" added successfully.`,
-                'success'
-            );
-            resetClassForm(false);
+    // 7. Instructor Module: Dynamic Repeatable Social Media Rows
+    const socialContainer = document.getElementById('social-links-container');
+    const addSocialBtn = document.getElementById('add-social-row-btn');
+
+    if (socialContainer && addSocialBtn) {
+        let iconOptions = [];
+        try {
+            iconOptions = JSON.parse(socialContainer.getAttribute('data-icon-options') || '[]');
+        } catch (e) {
+            iconOptions = [{ icon: 'facebook', title: 'Facebook', label: 'Facebook (facebook)' }];
+        }
+
+        const bindSocialRowEvents = (row) => {
+            const selectEl = row.querySelector('[data-social-icon-select]');
+            const titleInput = row.querySelector('[data-social-title-input]');
+            const removeBtn = row.querySelector('[data-remove-social-row]');
+
+            if (selectEl && titleInput) {
+                selectEl.addEventListener('change', () => {
+                    const selectedOption = selectEl.options[selectEl.selectedIndex];
+                    const defaultTitle = selectedOption ? selectedOption.getAttribute('data-default-title') : '';
+                    if (defaultTitle) {
+                        titleInput.value = defaultTitle;
+                    }
+                });
+            }
+
+            if (removeBtn) {
+                removeBtn.addEventListener('click', () => {
+                    const allRows = socialContainer.querySelectorAll('[data-social-row]');
+                    if (allRows.length > 1) {
+                        row.remove();
+                    } else {
+                        const urlInput = row.querySelector('input[name$="[url]"]');
+                        if (urlInput) urlInput.value = '';
+                    }
+                });
+            }
+        };
+
+        socialContainer.querySelectorAll('[data-social-row]').forEach(bindSocialRowEvents);
+
+        addSocialBtn.addEventListener('click', () => {
+            const nextIndex = Date.now();
+            const defaultOpt = iconOptions[0] || { icon: 'facebook', title: 'Facebook', label: 'Facebook (facebook)' };
+            const optionsHtml = iconOptions
+                .map(
+                    (opt) =>
+                        `<option value="${opt.icon}" data-default-title="${opt.title}">${opt.label}</option>`
+                )
+                .join('');
+
+            const row = document.createElement('div');
+            row.setAttribute('data-social-row', '');
+            row.className =
+                'grid grid-cols-1 gap-3 rounded-xl border border-slate-200/80 bg-slate-50/50 p-3.5 sm:grid-cols-12 sm:items-end';
+            row.innerHTML = `
+                <div class="sm:col-span-4">
+                    <label class="mb-1 block text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                        Icon Class
+                    </label>
+                    <select
+                        name="social_links[${nextIndex}][icon]"
+                        data-social-icon-select
+                        class="admin-input h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-xs font-medium text-slate-800 sm:text-sm"
+                    >
+                        ${optionsHtml}
+                    </select>
+                </div>
+                <div class="sm:col-span-3">
+                    <label class="mb-1 block text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                        Title
+                    </label>
+                    <input
+                        type="text"
+                        name="social_links[${nextIndex}][title]"
+                        data-social-title-input
+                        value="${defaultOpt.title}"
+                        placeholder="e.g., Facebook"
+                        class="admin-input h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-xs text-slate-900 sm:text-sm"
+                    >
+                </div>
+                <div class="sm:col-span-4">
+                    <label class="mb-1 block text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                        Profile Link / URL
+                    </label>
+                    <input
+                        type="text"
+                        name="social_links[${nextIndex}][url]"
+                        value=""
+                        placeholder="https://facebook.com/..."
+                        class="admin-input h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-xs text-slate-900 sm:text-sm"
+                    >
+                </div>
+                <div class="flex justify-end sm:col-span-1">
+                    <button
+                        type="button"
+                        data-remove-social-row
+                        title="Remove Link"
+                        class="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-slate-400 transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-600"
+                    >
+                        <i data-lucide="trash-2" class="h-4 w-4"></i>
+                    </button>
+                </div>
+            `;
+
+            socialContainer.appendChild(row);
+            bindSocialRowEvents(row);
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         });
     }
 
-    document.querySelectorAll('[data-delete-class]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-            const name = btn.getAttribute('data-delete-class') || 'Class';
-            window.showToast(`"${name}" removed from class list.`, 'info', 'Deleted');
+    // 8. Real-Time Search for Instructors Table (Instant Filter + Debounced Live Fetch)
+    const instructorSearchInput = document.getElementById('instructor-realtime-search');
+    const instructorTableWrapper = document.getElementById('instructor-table-wrapper');
+    const instructorCountBadge = document.getElementById('instructor-count-badge');
+    const instructorSearchSpinner = document.getElementById('instructor-search-spinner');
+
+    if (instructorSearchInput && instructorTableWrapper) {
+        let searchTimeout = null;
+        let activeController = null;
+
+        instructorSearchInput.addEventListener('input', () => {
+            const query = instructorSearchInput.value.trim();
+            const lowerQuery = query.toLowerCase();
+
+            // Immediate zero-latency client-side row filter on current page
+            const currentRows = instructorTableWrapper.querySelectorAll('[data-instructor-row]');
+            if (currentRows.length > 0) {
+                currentRows.forEach((row) => {
+                    const text = row.getAttribute('data-search-text') || '';
+                    row.classList.toggle('hidden', lowerQuery !== '' && !text.includes(lowerQuery));
+                });
+            }
+
+            if (searchTimeout) {
+                clearTimeout(searchTimeout);
+            }
+
+            searchTimeout = setTimeout(async () => {
+                const baseUrl = instructorSearchInput.getAttribute('data-search-url') || window.location.pathname;
+                const url = new URL(baseUrl, window.location.origin);
+                if (query !== '') {
+                    url.searchParams.set('search', query);
+                }
+
+                if (activeController) {
+                    activeController.abort();
+                }
+                activeController = new AbortController();
+
+                if (instructorSearchSpinner) {
+                    instructorSearchSpinner.classList.remove('hidden');
+                    instructorSearchSpinner.classList.add('flex');
+                }
+
+                try {
+                    const response = await fetch(url.toString(), {
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                        signal: activeController.signal,
+                    });
+
+                    if (!response.ok) return;
+
+                    const html = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+
+                    const newWrapper = doc.getElementById('instructor-table-wrapper');
+                    const newBadge = doc.getElementById('instructor-count-badge');
+
+                    if (newWrapper) {
+                        instructorTableWrapper.innerHTML = newWrapper.innerHTML;
+                    }
+                    if (newBadge && instructorCountBadge) {
+                        instructorCountBadge.textContent = newBadge.textContent;
+                    }
+
+                    window.history.replaceState({}, '', url.toString());
+
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons();
+                    }
+                } catch (err) {
+                    // Ignore abort errors
+                } finally {
+                    if (instructorSearchSpinner) {
+                        instructorSearchSpinner.classList.add('hidden');
+                        instructorSearchSpinner.classList.remove('flex');
+                    }
+                }
+            }, 220);
         });
-    });
+    }
 });
