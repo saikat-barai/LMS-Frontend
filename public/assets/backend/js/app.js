@@ -183,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const classFormSubmitText = document.getElementById('class-form-submit-text');
     const classFormCancel = document.getElementById('class-form-cancel');
     const classNameInput = document.getElementById('class_name');
+    const classSortOrderInput = document.getElementById('class_sort_order');
     const classStatusInput = document.getElementById('class_status');
     const classImageInput = document.getElementById('class_image');
     const classImagePreview = document.getElementById('class-image-preview');
@@ -204,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (classFormSubtitle) classFormSubtitle.textContent = `Create a new academic ${entityLabel.toLowerCase()}`;
         if (classFormSubmitText) classFormSubmitText.textContent = `Save ${entityLabel}`;
         if (classFormCancel) classFormCancel.classList.add('hidden');
+        if (classSortOrderInput) classSortOrderInput.value = '0';
         if (classImagePreview) {
             classImagePreview.src = '';
             classImagePreview.classList.add('hidden');
@@ -247,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemLabel = btn.getAttribute('data-entity-label') || entityLabel;
             const updateUrl = btn.getAttribute('data-update-url') || '';
             const name = btn.getAttribute('data-class-name') || '';
+            const sortOrder = btn.getAttribute('data-class-sort-order') || '0';
             const status = btn.getAttribute('data-class-status') || 'active';
             const image = btn.getAttribute('data-class-image') || '';
 
@@ -257,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 classFormMethod.value = 'PUT';
             }
             if (classNameInput) classNameInput.value = name;
+            if (classSortOrderInput) classSortOrderInput.value = sortOrder;
             if (classStatusInput) classStatusInput.value = status;
             if (classFormTitle) classFormTitle.textContent = `Edit ${itemLabel}`;
             if (classFormSubtitle) classFormSubtitle.textContent = `Update selected ${itemLabel.toLowerCase()} details`;
@@ -478,4 +482,187 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 220);
         });
     }
+
+    // 9. Batches Module: Custom Class Dropdown & Dynamic Add/Edit Form Mode
+    const batchFormCard = document.getElementById('batch-form-card');
+    const batchForm = document.getElementById('batch-quick-form');
+    const batchFormMethod = document.getElementById('batch-form-method');
+    const batchFormTitle = document.getElementById('batch-form-title');
+    const batchFormSubtitle = document.getElementById('batch-form-subtitle');
+    const batchFormSubmitText = document.getElementById('batch-form-submit-text');
+    const batchFormCancel = document.getElementById('batch-form-cancel');
+    const batchNameInput = document.getElementById('batch_name');
+    const batchClassIdInput = document.getElementById('batch_class_id');
+    const batchFeaturedInput = document.getElementById('batch_is_featured');
+    const batchSortOrderInput = document.getElementById('batch_sort_order');
+    const batchStatusInput = document.getElementById('batch_status');
+    const batchImageInput = document.getElementById('batch_image');
+    const batchImagePreview = document.getElementById('batch-image-preview');
+    const batchImagePlaceholder = document.getElementById('batch-image-placeholder');
+    const batchImageLabel = document.getElementById('batch-image-label');
+
+    // Custom Class Dropdown Elements
+    const customClassDropdown = document.getElementById('custom-class-dropdown');
+    const classDropdownTrigger = document.getElementById('class-dropdown-trigger');
+    const classDropdownMenu = document.getElementById('class-dropdown-menu');
+    const classDropdownChevron = document.getElementById('class-dropdown-chevron');
+    const classDropdownLabel = document.getElementById('class-dropdown-selected-label');
+    const classOptions = document.querySelectorAll('[data-class-option]');
+
+    const toggleClassDropdown = (open = null) => {
+        if (!classDropdownMenu) return;
+        const shouldOpen = open !== null ? open : classDropdownMenu.classList.contains('hidden');
+        classDropdownMenu.classList.toggle('hidden', !shouldOpen);
+        if (classDropdownTrigger) {
+            classDropdownTrigger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        }
+        if (classDropdownChevron) {
+            classDropdownChevron.style.transform = shouldOpen ? 'rotate(180deg)' : '';
+        }
+    };
+
+    if (classDropdownTrigger) {
+        classDropdownTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleClassDropdown();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (customClassDropdown && !customClassDropdown.contains(e.target)) {
+                toggleClassDropdown(false);
+            }
+        });
+    }
+
+    const selectClassOption = (id, name) => {
+        if (batchClassIdInput) {
+            batchClassIdInput.value = id || '';
+        }
+        if (classDropdownLabel) {
+            classDropdownLabel.textContent = name || 'Choose an Academic Class...';
+            classDropdownLabel.className = id ? 'font-semibold text-[#3b2670]' : 'font-medium text-slate-700';
+        }
+        classOptions.forEach((opt) => {
+            const isMatch = opt.getAttribute('data-id') === String(id);
+            const check = opt.querySelector('.class-option-check');
+            if (check) {
+                check.classList.toggle('hidden', !isMatch);
+            }
+        });
+        toggleClassDropdown(false);
+    };
+
+    classOptions.forEach((opt) => {
+        opt.addEventListener('click', () => {
+            const id = opt.getAttribute('data-id') || '';
+            const name = opt.getAttribute('data-name') || '';
+            selectClassOption(id, name);
+        });
+    });
+
+    const resetBatchForm = () => {
+        if (!batchForm) return;
+        batchForm.reset();
+        const storeUrl = batchForm.getAttribute('data-store-url');
+        if (storeUrl) {
+            batchForm.setAttribute('action', storeUrl);
+        }
+        if (batchFormMethod) {
+            batchFormMethod.value = 'POST';
+        }
+        if (batchFormTitle) batchFormTitle.textContent = 'Add New Batch';
+        if (batchFormSubtitle) batchFormSubtitle.textContent = 'Create a new batch under a class';
+        if (batchFormSubmitText) batchFormSubmitText.textContent = 'Save Batch';
+        if (batchFormCancel) batchFormCancel.classList.add('hidden');
+        if (batchFeaturedInput) batchFeaturedInput.checked = false;
+        if (batchSortOrderInput) batchSortOrderInput.value = '0';
+
+        selectClassOption('', '');
+
+        if (batchImagePreview) {
+            batchImagePreview.src = '';
+            batchImagePreview.classList.add('hidden');
+        }
+        if (batchImagePlaceholder) {
+            batchImagePlaceholder.classList.remove('hidden');
+        }
+        if (batchImageLabel) {
+            batchImageLabel.textContent = 'Click to upload image';
+        }
+    };
+
+    if (batchFormCancel) {
+        batchFormCancel.addEventListener('click', resetBatchForm);
+    }
+
+    if (batchImageInput) {
+        batchImageInput.addEventListener('change', (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                if (batchImagePreview && ev.target?.result) {
+                    batchImagePreview.src = ev.target.result;
+                    batchImagePreview.classList.remove('hidden');
+                }
+                if (batchImagePlaceholder) {
+                    batchImagePlaceholder.classList.add('hidden');
+                }
+                if (batchImageLabel) {
+                    batchImageLabel.textContent = file.name;
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    document.querySelectorAll('[data-edit-batch]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const updateUrl = btn.getAttribute('data-update-url') || '';
+            const name = btn.getAttribute('data-batch-name') || '';
+            const classId = btn.getAttribute('data-batch-class-id') || '';
+            const className = btn.getAttribute('data-batch-class-name') || '';
+            const isFeatured = btn.getAttribute('data-batch-featured') === '1';
+            const sortOrder = btn.getAttribute('data-batch-sort-order') || '0';
+            const status = btn.getAttribute('data-batch-status') || 'active';
+            const image = btn.getAttribute('data-batch-image') || '';
+
+            if (batchForm && updateUrl) {
+                batchForm.setAttribute('action', updateUrl);
+            }
+            if (batchFormMethod) {
+                batchFormMethod.value = 'PUT';
+            }
+            if (batchNameInput) batchNameInput.value = name;
+            if (batchStatusInput) batchStatusInput.value = status;
+            if (batchFeaturedInput) batchFeaturedInput.checked = isFeatured;
+            if (batchSortOrderInput) batchSortOrderInput.value = sortOrder;
+
+            selectClassOption(classId, className);
+
+            if (batchFormTitle) batchFormTitle.textContent = 'Edit Batch';
+            if (batchFormSubtitle) batchFormSubtitle.textContent = 'Update selected batch details';
+            if (batchFormSubmitText) batchFormSubmitText.textContent = 'Update Batch';
+            if (batchFormCancel) batchFormCancel.classList.remove('hidden');
+
+            if (image && batchImagePreview) {
+                batchImagePreview.src = image;
+                batchImagePreview.classList.remove('hidden');
+                if (batchImagePlaceholder) batchImagePlaceholder.classList.add('hidden');
+                if (batchImageLabel) batchImageLabel.textContent = 'Change current image';
+            } else if (batchImagePreview) {
+                batchImagePreview.src = '';
+                batchImagePreview.classList.add('hidden');
+                if (batchImagePlaceholder) batchImagePlaceholder.classList.remove('hidden');
+                if (batchImageLabel) batchImageLabel.textContent = 'Click to upload image';
+            }
+
+            if (batchFormCard && batchNameInput) {
+                batchFormCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                setTimeout(() => batchNameInput.focus(), 150);
+            }
+        });
+    });
 });

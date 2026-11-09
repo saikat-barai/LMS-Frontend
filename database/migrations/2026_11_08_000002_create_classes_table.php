@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('image')->nullable();
+            $table->integer('sort_order')->default(0);
             $table->enum('status', ClassStatus::values())->default(ClassStatus::Active->value);
             $table->timestamps();
         });
@@ -29,4 +30,3 @@ return new class extends Migration
         Schema::dropIfExists('classes');
     }
 };
-

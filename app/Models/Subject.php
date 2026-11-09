@@ -16,6 +16,7 @@ class Subject extends Model
     protected $fillable = [
         'name',
         'image',
+        'sort_order',
         'status',
     ];
 
@@ -27,6 +28,7 @@ class Subject extends Model
     protected function casts(): array
     {
         return [
+            'sort_order' => 'integer',
             'status' => ClassStatus::class,
         ];
     }
@@ -54,4 +56,3 @@ class Subject extends Model
             ->withTimestamps();
     }
 }
-

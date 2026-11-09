@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\BatchesController;
 use App\Http\Controllers\Backend\ClassesController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\InstructorsController;
@@ -30,6 +31,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/', 'store')->name('store');
             Route::put('/{subject}', 'update')->name('update');
             Route::delete('/{subject}', 'destroy')->name('destroy');
+        });
+
+        Route::controller(BatchesController::class)->prefix('batches')->name('batches.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
+            Route::put('/{batch}', 'update')->name('update');
+            Route::delete('/{batch}', 'destroy')->name('destroy');
         });
 
         Route::controller(InstructorsController::class)->prefix('instructors')->name('instructors.')->group(function () {

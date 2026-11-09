@@ -28,6 +28,7 @@
                     <thead>
                         <tr class="border-b border-slate-100 bg-slate-50/60 text-[11px] font-bold uppercase tracking-wider text-slate-500">
                             <th class="px-5 py-3.5 sm:px-6">Class</th>
+                            <th class="w-24 px-4 py-3.5 text-center">Order</th>
                             <th class="w-36 px-4 py-3.5">Status</th>
                             <th class="w-28 px-5 py-3.5 text-right sm:px-6">Action</th>
                         </tr>
@@ -57,6 +58,13 @@
                                     </div>
                                 </td>
 
+                                <!-- Sort Order -->
+                                <td class="px-4 py-3.5 text-center">
+                                    <span class="inline-flex items-center justify-center rounded-md bg-slate-100 px-2 py-0.5 font-mono text-xs font-semibold text-slate-700">
+                                        {{ $item->sort_order ?? 0 }}
+                                    </span>
+                                </td>
+
                                 <!-- Status Badge -->
                                 <td class="px-4 py-3.5">
                                     @if ($item->status?->value === 'active')
@@ -81,6 +89,7 @@
                                             data-edit-class
                                             data-update-url="{{ route('admin.classes.update', $item) }}"
                                             data-class-name="{{ $item->name }}"
+                                            data-class-sort-order="{{ $item->sort_order ?? 0 }}"
                                             data-class-status="{{ $item->status?->value ?? 'active' }}"
                                             data-class-image="{{ $item->imageUrl() ?? '' }}"
                                             class="grid h-8 w-8 place-items-center rounded-lg border border-slate-200 text-slate-600 transition hover:border-[#3b2670]/30 hover:bg-[#f4f0ff] hover:text-[#3b2670]"
@@ -225,7 +234,24 @@
                     </label>
                 </div>
 
-                <!-- 3. Status -->
+                <!-- 3. Sort Order -->
+                <div>
+                    <label for="class_sort_order" class="mb-1.5 block text-xs font-bold text-slate-700">
+                        Sort Order
+                    </label>
+                    <input
+                        id="class_sort_order"
+                        name="sort_order"
+                        type="number"
+                        min="0"
+                        value="{{ old('sort_order', 0) }}"
+                        placeholder="0"
+                        class="admin-input h-11 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 text-sm text-slate-900 placeholder:text-slate-400"
+                    >
+                    <p class="mt-1 text-[11px] text-slate-400">Lower numbers appear first (e.g., 0, 1, 2)</p>
+                </div>
+
+                <!-- 4. Status -->
                 <div>
                     <label for="class_status" class="mb-1.5 block text-xs font-bold text-slate-700">
                         Status <span class="text-rose-500">*</span>

@@ -18,6 +18,7 @@ class ClassesController extends Controller
     public function index(): View
     {
         $classes = AcademicClass::query()
+            ->orderBy('sort_order', 'asc')
             ->latest()
             ->paginate(10);
 
@@ -31,6 +32,7 @@ class ClassesController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255', 'unique:classes,name'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
             'status' => ['required', Rule::in(ClassStatus::values())],
         ]);
 
@@ -43,6 +45,7 @@ class ClassesController extends Controller
         AcademicClass::query()->create([
             'name' => trim($validated['name']),
             'image' => $imagePath,
+            'sort_order' => (int) ($validated['sort_order'] ?? 0),
             'status' => $validated['status'],
         ]);
 
@@ -61,6 +64,7 @@ class ClassesController extends Controller
                 Rule::unique('classes', 'name')->ignore($academicClass->id),
             ],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
             'status' => ['required', Rule::in(ClassStatus::values())],
         ]);
 
@@ -74,6 +78,7 @@ class ClassesController extends Controller
         $academicClass->update([
             'name' => trim($validated['name']),
             'image' => $imagePath,
+            'sort_order' => (int) ($validated['sort_order'] ?? 0),
             'status' => $validated['status'],
         ]);
 

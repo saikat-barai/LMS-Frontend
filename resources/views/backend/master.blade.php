@@ -118,12 +118,14 @@
                             </span>
                         </a>
 
-                        <a href="#" class="sidebar-nav-link">
+                        <a href="{{ route('admin.batches.index') }}" class="sidebar-nav-link {{ request()->routeIs('admin.batches.*') ? 'is-active' : '' }}">
                             <span class="flex items-center gap-2.5">
                                 <i data-lucide="layers" class="h-4 w-4"></i>
                                 <span>Batches</span>
                             </span>
-                            <span class="rounded bg-white/10 px-1.5 py-0.5 text-[11px] font-semibold text-slate-300">08</span>
+                            <span class="rounded bg-white/10 px-1.5 py-0.5 text-[11px] font-semibold text-slate-300">
+                                {{ \Illuminate\Support\Facades\Schema::hasTable('batches') ? str_pad((string) \App\Models\Batch::count(), 2, '0', STR_PAD_LEFT) : '00' }}
+                            </span>
                         </a>
 
                         <a href="#" class="sidebar-nav-link">

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduSphere - Modern Learning Management System</title>
-    <meta name="description" content="A modern Learning Management System for students and educators — live classes, expert mentors, and progress that sticks.">
+    <title>@yield('title', 'Zihad Academy - Modern Online Learning Platform')</title>
+    <meta name="description" content="Zihad Academy is a modern online learning platform with interactive live classes, smart notes, model tests, and guidance from expert mentors.">
 
     <!-- Google Fonts: Manrope & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,7 +71,7 @@
             <div id="header-content" class="header-inner">
                 <!-- Logo -->
                 <a href="{{ route('home') }}" class="header-logo">
-                    <img src="{{ asset('assets/frontend/images/Z Academy Glossy Purple Logo.png') }}?v=2" alt="Z Academy" width="122" height="40" class="header-logo-img h-9 w-auto object-contain sm:h-10 lg:h-11">
+                    <img src="{{ asset('assets/frontend/images/Z Academy Glossy Purple Logo.png') }}?v=2" alt="Zihad Academy" width="122" height="40" class="header-logo-img h-9 w-auto object-contain sm:h-10 lg:h-11">
                 </a>
 
                 <!-- Desktop Navigation -->
@@ -140,16 +140,13 @@
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.85fr_0.95fr_1.2fr] lg:gap-10">
                 <!-- 1. Brand & Social Media -->
                 <div>
-                    <a href="{{ route('home') }}" class="inline-flex items-center gap-2.5">
-                        <span class="grid h-9 w-9 place-items-center rounded-lg bg-[#3b2670] text-white shadow-sm ring-1 ring-white/15">
-                            <i data-lucide="graduation-cap" class="h-5 w-5"></i>
-                        </span>
-                        <span class="font-display text-xl font-bold tracking-tight text-white">
-                            EduSphere
-                        </span>
+                    <a href="{{ route('home') }}" class="inline-flex items-center">
+                        <div class="inline-flex items-center rounded-xl bg-white px-3 py-1.5 shadow-sm ring-1 ring-white/20 transition-transform duration-200 hover:scale-[1.02]">
+                            <img src="{{ asset('assets/frontend/images/Z Academy Glossy Purple Logo.png') }}?v=2" alt="Zihad Academy" width="130" height="42" class="h-9 w-auto object-contain sm:h-10">
+                        </div>
                     </a>
                     <p class="mt-3.5 max-w-xs text-[0.95rem] leading-relaxed text-slate-300/90">
-                        A complete online learning platform with live classes, smart notes, and expert mentors.
+                        Zihad Academy is a modern online learning platform with interactive live classes, smart notes, model exams, and expert mentors.
                     </p>
                     <div class="mt-5 flex items-center gap-3">
                         <a href="#" aria-label="Facebook" class="grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-white/5 text-slate-100 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#2563eb] hover:bg-[#2563eb] hover:text-white">
@@ -200,7 +197,7 @@
                         </li>
                         <li class="flex items-start gap-2.5">
                             <i data-lucide="mail" class="mt-1 h-4 w-4 shrink-0 text-[#c4b5fd]"></i>
-                            <a href="mailto:support@edusphere.com" class="transition-colors hover:text-white">support@edusphere.com</a>
+                            <a href="mailto:support@zihadacademy.com" class="transition-colors hover:text-white">support@zihadacademy.com</a>
                         </li>
                         <li class="flex items-start gap-2.5">
                             <i data-lucide="map-pin" class="mt-1 h-4 w-4 shrink-0 text-[#c4b5fd]"></i>
@@ -212,7 +209,7 @@
 
             <!-- Bottom Copyright Bar -->
             <div class="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center sm:flex-row sm:text-left">
-                <p class="text-xs text-slate-300/80 sm:text-sm">© 2026 EduSphere. All rights reserved.</p>
+                <p class="text-xs text-slate-300/80 sm:text-sm">© {{ date('Y') }} Zihad Academy. All rights reserved.</p>
                 <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-300/80 sm:text-sm">
                     <a href="#" class="transition-colors hover:text-white">Privacy</a>
                     <span class="text-white/25">•</span>
