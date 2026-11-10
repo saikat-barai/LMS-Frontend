@@ -58,8 +58,8 @@
                 </div>
             </div>
 
-            <!-- Mobile Horizontal Navigation Bar (Visible on Mobile & Tablet) -->
-            <div class="mt-4 flex items-center gap-2 overflow-x-auto pb-1.5 lg:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <!-- Mobile Navigation Bar (Wraps into Multiple Rows on Mobile & Tablet, No Horizontal Scroll) -->
+            <div class="mt-4 flex flex-wrap items-center gap-2 lg:hidden">
                 <a href="{{ route('student.dashboard') }}" class="course-filter-pill {{ request()->routeIs('student.dashboard') ? 'is-active' : '' }} inline-flex shrink-0 items-center gap-1.5 rounded-lg border px-3.5 py-2 text-xs font-semibold shadow-sm transition-all">
                     <i data-lucide="layout-dashboard" class="h-3.5 w-3.5"></i>
                     <span>Dashboard</span>
