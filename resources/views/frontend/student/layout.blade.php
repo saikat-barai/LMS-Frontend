@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- ==================== STUDENT PORTAL LAYOUT ==================== -->
-    <section class="relative min-h-screen overflow-hidden bg-soft-gradient pb-16 pt-22 sm:pb-20 sm:pt-26 lg:pb-24 lg:pt-28">
+    <section class="relative min-h-screen overflow-hidden bg-soft-gradient pb-16 pt-24 sm:pb-20 sm:pt-28 lg:pb-24 lg:pt-32">
         <!-- Ambient Glows -->
         <div class="pointer-events-none absolute -left-24 top-20 h-72 w-72 rounded-full bg-[#3b2670]/8 blur-[95px]"></div>
         <div class="pointer-events-none absolute -right-24 top-1/3 h-80 w-80 rounded-full bg-primary/8 blur-[100px]"></div>
