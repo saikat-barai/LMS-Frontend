@@ -26,6 +26,7 @@ use Illuminate\Notifications\Notifiable;
     'social_links',
     'password',
     'status',
+    'sort_order',
 ])]
 #[Hidden(['password', 'remember_token'])]
 class Admin extends Authenticatable
@@ -45,6 +46,7 @@ class Admin extends Authenticatable
             'date_of_birth' => 'date',
             'social_links' => 'array',
             'password' => 'hashed',
+            'sort_order' => 'integer',
         ];
     }
 

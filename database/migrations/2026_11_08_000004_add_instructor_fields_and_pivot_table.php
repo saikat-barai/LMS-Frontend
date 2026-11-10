@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('experience')->nullable()->after('designation');
             $table->text('bio')->nullable()->after('address');
             $table->json('social_links')->nullable()->after('bio');
+            $table->integer('sort_order')->default(0)->after('social_links');
         });
 
         Schema::create('instructor_subject', function (Blueprint $table) {
@@ -42,8 +43,8 @@ return new class extends Migration
                 'experience',
                 'bio',
                 'social_links',
+                'sort_order',
             ]);
         });
     }
 };
-

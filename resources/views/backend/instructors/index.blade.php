@@ -71,6 +71,7 @@
                             <th class="px-4 py-3.5">Contact</th>
                             <th class="px-4 py-3.5">Subjects</th>
                             <th class="px-4 py-3.5">Social Media</th>
+                            <th class="w-24 px-4 py-3.5 text-center">Order</th>
                             <th class="w-32 px-4 py-3.5">Status</th>
                             <th class="w-28 px-5 py-3.5 text-right sm:px-6">Action</th>
                         </tr>
@@ -281,6 +282,13 @@
                                     @endif
                                 </td>
 
+                                <!-- Sort Order -->
+                                <td class="px-4 py-4 text-center">
+                                    <span class="inline-flex items-center justify-center rounded-lg bg-slate-100 px-2.5 py-1 font-mono text-xs font-semibold text-slate-700">
+                                        #{{ $instructor->sort_order ?? 0 }}
+                                    </span>
+                                </td>
+
                                 <!-- Status Badge -->
                                 <td class="px-4 py-4">
                                     @if ($instructor->status?->value === 'active')
@@ -328,7 +336,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="px-6 py-14 text-center">
+                                <td colspan="7" class="px-6 py-14 text-center">
                                     <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-[#f4f0ff] text-[#3b2670]">
                                         <i data-lucide="users" class="h-6 w-6"></i>
                                     </div>

@@ -37,6 +37,7 @@ class InstructorsController extends Controller
                 });
             })
             ->with('subjects')
+            ->orderBy('sort_order', 'asc')
             ->latest()
             ->paginate(10)
             ->withQueryString();
@@ -75,6 +76,7 @@ class InstructorsController extends Controller
             'bio' => ['nullable', 'string', 'max:1500'],
             'password' => ['required', 'string', 'min:6'],
             'status' => ['required', Rule::in(AdminStatus::values())],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
             'profile_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'subjects' => ['nullable', 'array'],
             'subjects.*' => ['integer', 'exists:subjects,id'],
@@ -107,6 +109,7 @@ class InstructorsController extends Controller
             'social_links' => $socialLinks,
             'password' => $validated['password'],
             'status' => $validated['status'],
+            'sort_order' => isset($validated['sort_order']) && $validated['sort_order'] !== null ? (int) $validated['sort_order'] : 0,
         ]);
 
         $instructor->subjects()->sync($validated['subjects'] ?? []);
@@ -161,6 +164,7 @@ class InstructorsController extends Controller
             'bio' => ['nullable', 'string', 'max:1500'],
             'password' => ['nullable', 'string', 'min:6'],
             'status' => ['required', Rule::in(AdminStatus::values())],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
             'profile_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'subjects' => ['nullable', 'array'],
             'subjects.*' => ['integer', 'exists:subjects,id'],
@@ -193,6 +197,7 @@ class InstructorsController extends Controller
             'bio' => $validated['bio'] ?? null,
             'social_links' => $socialLinks,
             'status' => $validated['status'],
+            'sort_order' => isset($validated['sort_order']) && $validated['sort_order'] !== null ? (int) $validated['sort_order'] : 0,
         ];
 
         if (! empty($validated['password'])) {

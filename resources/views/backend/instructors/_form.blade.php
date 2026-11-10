@@ -474,6 +474,22 @@
                     </select>
                 </div>
 
+                <!-- Sort Order -->
+                <div>
+                    <label for="sort_order" class="mb-1.5 block text-xs font-bold text-slate-700">
+                        Sort Order <span class="text-xs font-normal text-slate-400">(Lower numbers appear first)</span>
+                    </label>
+                    <input
+                        id="sort_order"
+                        name="sort_order"
+                        type="number"
+                        min="0"
+                        value="{{ old('sort_order', $isEdit ? ($instructor->sort_order ?? 0) : 0) }}"
+                        placeholder="0"
+                        class="admin-input h-11 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 text-sm font-medium text-slate-800 placeholder:text-slate-400"
+                    >
+                </div>
+
                 <!-- Submit & Cancel -->
                 <div class="flex flex-col gap-2.5 pt-2">
                     <button
