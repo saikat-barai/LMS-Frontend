@@ -135,8 +135,8 @@
     </main>
 
     <!-- ==================== FOOTER ==================== -->
-    <footer class="site-footer w-full border-t border-[#3b2670]/20 bg-[#160f30] pb-16 text-white lg:pb-0">
-        <div class="container-lms py-10 sm:py-12">
+    <footer class="site-footer w-full border-t border-[#3b2670]/20 bg-[#160f30] text-white">
+        <div class="container-lms pt-10 pb-4 sm:py-12">
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.85fr_0.95fr_1.2fr] lg:gap-10">
                 <!-- 1. Brand & Social Media -->
                 <div>
@@ -208,15 +208,8 @@
             </div>
 
             <!-- Bottom Copyright Bar -->
-            <div class="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center sm:flex-row sm:text-left">
+            <div class="mt-8 border-t border-white/10 pt-6 text-center">
                 <p class="text-xs text-slate-300/80 sm:text-sm">© {{ date('Y') }} Zihad Academy. All rights reserved.</p>
-                <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-300/80 sm:text-sm">
-                    <a href="#" class="transition-colors hover:text-white">Privacy</a>
-                    <span class="text-white/25">•</span>
-                    <a href="#" class="transition-colors hover:text-white">Terms</a>
-                    <span class="text-white/25">•</span>
-                    <a href="#" class="transition-colors hover:text-white">Refund Policy</a>
-                </div>
             </div>
         </div>
     </footer>

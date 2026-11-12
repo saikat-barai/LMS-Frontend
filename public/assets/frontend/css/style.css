@@ -87,6 +87,12 @@ body {
   color: #ffffff;
 }
 
+@media (max-width: 1023px) {
+  .site-footer {
+    padding-bottom: 3.75rem;
+  }
+}
+
 /* Prevent raw images / icons from bumping layout before Tailwind JS initializes */
 .header-logo-img {
   height: 2.25rem;
