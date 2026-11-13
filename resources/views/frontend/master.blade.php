@@ -209,7 +209,7 @@
 
             <!-- Bottom Copyright Bar -->
             <div class="mt-8 border-t border-white/10 pt-6 text-center">
-                <p class="text-xs text-slate-300/80 sm:text-sm">© {{ date('Y') }} Zihad Academy. All rights reserved.</p>
+                <p class="text-xs text-slate-300/80 sm:text-sm">© {{ date('Y') }} Zihad - Academy. All rights reserved.</p>
             </div>
         </div>
     </footer>
